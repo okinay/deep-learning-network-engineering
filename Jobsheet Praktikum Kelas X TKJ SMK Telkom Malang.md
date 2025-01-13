@@ -1,5 +1,7 @@
 ### Jobsheet Praktikum Kelas X TKJ SMK
 
+![Logo CentOS](https://www.logo.wine/a/logo/CentOS/CentOS-Logo.wine.svg)  
+
 #### **Tujuan Pembelajaran**
 
 Siswa diharapkan mampu:
