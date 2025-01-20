@@ -1,6 +1,6 @@
 ### Jobsheet Praktikum Kelas XI TKJ SMK
 
-![Logo CentOS](https://www.logo.wine/a/logo/CentOS/CentOS-Logo.wine.svg)  
+![Logo CentOS](https://wiki.centos.org/attachments/ArtWork(2f)Brand(2f)Logo/centos-logo-light-vertical.svg)  
 
 #### **Ringkasan Tujuan Jobsheet**
 Jobsheet ini dirancang untuk memberikan panduan langkah demi langkah kepada siswa dalam memahami dan mengimplementasikan teknologi jaringan dan server, mulai dari dasar hingga tingkat lanjut. Siswa diharapkan mampu:
