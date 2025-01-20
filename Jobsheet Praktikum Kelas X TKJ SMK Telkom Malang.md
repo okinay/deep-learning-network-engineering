@@ -1,12 +1,23 @@
-### Jobsheet Praktikum Kelas X TKJ SMK
+### Jobsheet Praktikum Kelas XI TKJ SMK
 
 ![Logo CentOS](https://www.logo.wine/a/logo/CentOS/CentOS-Logo.wine.svg)  
 
+#### **Ringkasan Tujuan Jobsheet**
+Jobsheet ini dirancang untuk memberikan panduan langkah demi langkah kepada siswa dalam memahami dan mengimplementasikan teknologi jaringan dan server, mulai dari dasar hingga tingkat lanjut. Siswa diharapkan mampu:
+
+1. Memahami konsep virtualisasi dan mengelola virtual machine menggunakan VirtualBox.
+2. Menginstal dan mengonfigurasi sistem operasi CentOS beserta layanan seperti DNS dan Web Server.
+3. Melakukan troubleshooting pada layanan jaringan.
+4. Menyelesaikan proyek akhir yang mencakup integrasi berbagai layanan untuk skenario dunia nyata.
+5. Mempresentasikan hasil proyek dengan dokumentasi teknis yang baik.
+
+---
+
 #### **Tujuan Pembelajaran**
 
-Siswa diharapkan mampu:
+Mahasiswa diharapkan mampu:
 
-1. Memahami konsep dasar virtualisasi dan CentOS secara mendalam.
+1. Memahami konsep dasar virtualisasi dan CentOS secara mendalam, termasuk bagaimana teknologi virtualisasi dapat mempermudah pengelolaan server dan infrastruktur jaringan dalam skala besar. Pemahaman ini bertujuan untuk membantu siswa mengembangkan keterampilan dasar yang esensial dalam dunia kerja berbasis teknologi.
 2. Menggunakan VirtualBox untuk membuat, mengelola, dan memodifikasi virtual machine dengan konfigurasi lanjutan.
 3. Menginstal, mengonfigurasi, dan mengelola CentOS beserta layanan seperti DNS dan Web Server dengan pendekatan yang terstruktur.
 4. Mengembangkan keterampilan troubleshooting serta kemampuan implementasi proyek nyata yang relevan dengan kebutuhan industri.
@@ -74,7 +85,27 @@ Siswa diharapkan mampu:
 
 5. **Tugas Praktikum**:
 
-   - Dokumentasikan proses pembuatan Virtual Machine dan lampirkan tangkapan layar setiap langkah.
+   - Dokumentasikan proses pembuatan Virtual Machine dengan menyusun laporan yang mencakup langkah-langkah berikut:
+
+1. **Persiapan Awal**:
+   - Unduh perangkat lunak VirtualBox dan file ISO CentOS.
+   - Cantumkan spesifikasi minimum yang digunakan.
+
+2. **Langkah-Langkah Pembuatan**:
+   - Buat mesin virtual baru dan atur pengaturan seperti nama, jenis OS, alokasi RAM, dan pengaturan penyimpanan.
+   - Tambahkan file ISO sebagai media instalasi.
+
+3. **Tangkapan Layar**:
+   - Lampirkan tangkapan layar setiap langkah utama, termasuk:
+     - Tampilan pengaturan nama dan jenis OS.
+     - Pengaturan alokasi RAM dan penyimpanan.
+     - Penambahan ISO sebagai media instalasi.
+
+4. **Catatan Tambahan**:
+   - Jelaskan alasan memilih konfigurasi tertentu.
+   - Sertakan kendala yang mungkin dihadapi selama proses ini dan cara penyelesaiannya.
+
+Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar diberi keterangan yang jelas.
 
 ---
 
@@ -120,9 +151,13 @@ Siswa diharapkan mampu:
 
 3. **Langkah 3: Mengatur Hostname**
 
-   - Ubah hostname menggunakan perintah:
+   - Ubah hostname menggunakan perintah berikut dan pastikan siswa memahami bagaimana perintah ini memengaruhi konfigurasi jaringan secara keseluruhan:
      ```bash
      sudo hostnamectl set-hostname centos.moklet-tkj.com
+     ```
+     Dengan perintah ini, sistem akan mengatur hostname menjadi "centos.moklet-tkj.com," yang digunakan untuk identifikasi di jaringan. Pengaturan ini penting karena hostname akan muncul dalam berbagai log jaringan dan digunakan oleh layanan seperti DNS untuk resolusi nama yang benar. Pastikan setelah menjalankan perintah ini, siswa memverifikasi perubahan dengan:
+     ```bash
+     hostnamectl status
      ```
 
 4. **Tugas Praktikum**:
@@ -169,7 +204,26 @@ Siswa diharapkan mampu:
 
 2. **Langkah 2: Konfigurasi Virtual Host**
 
-   - Tambahkan virtual host untuk domain "moklet-tkj.com" di `/etc/httpd/conf.d/moklet-tkj.com.conf`.
+   - Tambahkan virtual host untuk domain "moklet-tkj.com" di `/etc/httpd/conf.d/moklet-tkj.com.conf` dengan isi konfigurasi berikut:
+
+```apache
+<VirtualHost *:80>
+    ServerName moklet-tkj.com
+    ServerAlias www.moklet-tkj.com
+    DocumentRoot /var/www/moklet-tkj.com
+
+    <Directory /var/www/moklet-tkj.com>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog /var/log/httpd/moklet-tkj.com-error.log
+    CustomLog /var/log/httpd/moklet-tkj.com-access.log combined
+</VirtualHost>
+```
+
+Jangan lupa membuat direktori `/var/www/moklet-tkj.com` dan menambahkan file `index.html` untuk pengujian awal. Restart Apache setelah melakukan konfigurasi.
 
 3. **Langkah 3: Pengujian Integrasi**
 
@@ -222,7 +276,13 @@ Siswa diharapkan mampu:
 
 4. **Tugas Praktikum**:
 
-   - Presentasikan hasil proyek kepada instruktur dan teman sejawat.
+   - Presentasikan hasil proyek kepada instruktur dan teman sejawat. Pastikan presentasi mencakup beberapa aspek berikut sebagai kriteria penilaian:
+
+- **Kelengkapan Teknis**: Apakah konfigurasi DNS dan Web Server sudah diimplementasikan secara lengkap sesuai kebutuhan proyek?
+- **Kejelasan Dokumentasi**: Seberapa baik dokumentasi mendukung pemahaman audiens tentang proyek?
+- **Keterampilan Penyampaian**: Seberapa efektif peserta menyampaikan ide dan temuan selama proyek berlangsung?
+- **Pemecahan Masalah**: Apakah peserta mampu menjelaskan dan menyelesaikan kendala yang dihadapi selama implementasi?
+- **Manfaat dan Relevansi**: Seberapa relevan proyek dengan kebutuhan dunia nyata dan bagaimana manfaatnya terhadap skenario penggunaan yang diajukan?
 
 ---
 
