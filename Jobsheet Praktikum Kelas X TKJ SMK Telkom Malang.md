@@ -278,11 +278,11 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
    - Presentasikan hasil proyek kepada instruktur dan teman sejawat. Pastikan presentasi mencakup beberapa aspek berikut sebagai kriteria penilaian:
 
-- **Kelengkapan Teknis**: Apakah konfigurasi DNS dan Web Server sudah diimplementasikan secara lengkap sesuai kebutuhan proyek?
-- **Kejelasan Dokumentasi**: Seberapa baik dokumentasi mendukung pemahaman audiens tentang proyek?
-- **Keterampilan Penyampaian**: Seberapa efektif peserta menyampaikan ide dan temuan selama proyek berlangsung?
-- **Pemecahan Masalah**: Apakah peserta mampu menjelaskan dan menyelesaikan kendala yang dihadapi selama implementasi?
-- **Manfaat dan Relevansi**: Seberapa relevan proyek dengan kebutuhan dunia nyata dan bagaimana manfaatnya terhadap skenario penggunaan yang diajukan?
+      - **Kelengkapan Teknis**: Apakah konfigurasi DNS dan Web Server sudah diimplementasikan secara lengkap sesuai kebutuhan proyek?
+      - **Kejelasan Dokumentasi**: Seberapa baik dokumentasi mendukung pemahaman audiens tentang proyek?
+      - **Keterampilan Penyampaian**: Seberapa efektif peserta menyampaikan ide dan temuan selama proyek berlangsung?
+      - **Pemecahan Masalah**: Apakah peserta mampu menjelaskan dan menyelesaikan kendala yang dihadapi selama implementasi?
+      - **Manfaat dan Relevansi**: Seberapa relevan proyek dengan kebutuhan dunia nyata dan bagaimana manfaatnya terhadap skenario penggunaan yang diajukan?
 
 ---
 
