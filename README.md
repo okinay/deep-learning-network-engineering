@@ -1,5 +1,3 @@
-Berikut adalah versi yang disempurnakan dari README GitHub Anda:
-
 # Deep Learning Network Engineering
 
 Repository ini merupakan kumpulan sumber daya pembelajaran di bidang jaringan komputer, dengan fokus pada penerapan deep learning. Di dalamnya terdapat berbagai materi, proyek, dan informasi yang berkaitan dengan jaringan komputer dan teknik deep learning.
