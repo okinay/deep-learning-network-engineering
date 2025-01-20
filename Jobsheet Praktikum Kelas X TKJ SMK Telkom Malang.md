@@ -15,7 +15,7 @@ Jobsheet ini dirancang untuk memberikan panduan langkah demi langkah kepada sisw
 
 #### **Tujuan Pembelajaran**
 
-Mahasiswa diharapkan mampu:
+Siswa diharapkan mampu:
 
 1. Memahami konsep dasar virtualisasi dan CentOS secara mendalam, termasuk bagaimana teknologi virtualisasi dapat mempermudah pengelolaan server dan infrastruktur jaringan dalam skala besar. Pemahaman ini bertujuan untuk membantu siswa mengembangkan keterampilan dasar yang esensial dalam dunia kerja berbasis teknologi.
 2. Menggunakan VirtualBox untuk membuat, mengelola, dan memodifikasi virtual machine dengan konfigurasi lanjutan.
@@ -206,24 +206,24 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
    - Tambahkan virtual host untuk domain "moklet-tkj.com" di `/etc/httpd/conf.d/moklet-tkj.com.conf` dengan isi konfigurasi berikut:
 
-```apache
-<VirtualHost *:80>
-    ServerName moklet-tkj.com
-    ServerAlias www.moklet-tkj.com
-    DocumentRoot /var/www/moklet-tkj.com
+      ```apache
+      <VirtualHost *:80>
+         ServerName moklet-tkj.com
+         ServerAlias www.moklet-tkj.com
+         DocumentRoot /var/www/moklet-tkj.com
 
-    <Directory /var/www/moklet-tkj.com>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-    </Directory>
+         <Directory /var/www/moklet-tkj.com>
+            Options Indexes FollowSymLinks
+            AllowOverride All
+            Require all granted
+         </Directory>
 
-    ErrorLog /var/log/httpd/moklet-tkj.com-error.log
-    CustomLog /var/log/httpd/moklet-tkj.com-access.log combined
-</VirtualHost>
-```
+         ErrorLog /var/log/httpd/moklet-tkj.com-error.log
+         CustomLog /var/log/httpd/moklet-tkj.com-access.log combined
+      </VirtualHost>
+      ```
 
-Jangan lupa membuat direktori `/var/www/moklet-tkj.com` dan menambahkan file `index.html` untuk pengujian awal. Restart Apache setelah melakukan konfigurasi.
+      Jangan lupa membuat direktori `/var/www/moklet-tkj.com` dan menambahkan file `index.html` untuk pengujian awal. Restart Apache setelah melakukan konfigurasi.
 
 3. **Langkah 3: Pengujian Integrasi**
 
