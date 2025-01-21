@@ -1,8 +1,8 @@
-### Jobsheet Praktikum Kelas XI TKJ SMK
+# Jobsheet Praktikum Kelas XI TKJ SMK
 
 ![Logo CentOS](https://wiki.centos.org/attachments/ArtWork(2f)Brand(2f)Logo/centos-logo-light-vertical.svg)  
 
-#### **Ringkasan Tujuan Jobsheet**
+## **Ringkasan Tujuan Jobsheet**
 Jobsheet ini dirancang untuk memberikan panduan langkah demi langkah kepada siswa dalam memahami dan mengimplementasikan teknologi jaringan dan server, mulai dari dasar hingga tingkat lanjut. Siswa diharapkan mampu:
 
 1. Memahami konsep virtualisasi dan mengelola virtual machine menggunakan VirtualBox.
@@ -13,7 +13,7 @@ Jobsheet ini dirancang untuk memberikan panduan langkah demi langkah kepada sisw
 
 ---
 
-#### **Tujuan Pembelajaran**
+## **Tujuan Pembelajaran**
 
 Siswa diharapkan mampu:
 
@@ -25,7 +25,7 @@ Siswa diharapkan mampu:
 
 ---
 
-#### **Petunjuk Praktikum**
+## **Petunjuk Praktikum**
 
 1. Awali praktikum dengan doa untuk memohon kelancaran.
 2. Pelajari dan pahami teori yang relevan sebelum memulai aktivitas praktikum.
@@ -36,7 +36,7 @@ Siswa diharapkan mampu:
 
 ---
 
-#### **Alat dan Bahan**
+## **Alat dan Bahan**
 
 - **Perangkat Keras**:
   - Komputer/Laptop dengan spesifikasi minimal RAM 8GB dan penyimpanan 100GB.
@@ -48,7 +48,7 @@ Siswa diharapkan mampu:
 
 ---
 
-#### **Dasar Teori**
+## **Dasar Teori**
 
 1. **Virtualisasi**: Teknologi yang memungkinkan eksekusi sistem operasi dalam lingkungan virtual pada perangkat keras yang sama.
 2. **CentOS**: Sistem operasi berbasis Linux yang dikenal stabil, aman, dan digunakan secara luas pada server di lingkungan produksi.
@@ -58,9 +58,9 @@ Siswa diharapkan mampu:
 
 ---
 
-#### **Latihan Praktikum**
+## **Latihan Praktikum**
 
-## **Pekan 1: Pengenalan Virtualisasi dan Instalasi CentOS**
+### **Pekan 1: Pengenalan Virtualisasi dan Instalasi CentOS**
 
 1. **Langkah 1: Instalasi VirtualBox**
 
@@ -109,7 +109,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-## **Pekan 2: Konfigurasi Virtual Machine dan Instalasi CentOS**
+### **Pekan 2: Konfigurasi Virtual Machine dan Instalasi CentOS**
 
 1. **Langkah 1: Pengaturan Virtual Machine**
 
@@ -138,7 +138,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
      - Tampilan login setelah instalasi selesai.
 ---
 
-## **Pekan 3: Konfigurasi Dasar CentOS dan Perintah Dasar Linux**
+### **Pekan 3: Konfigurasi Dasar CentOS dan Perintah Dasar Linux**
 
 1. **Langkah 1: Update Sistem**
 
@@ -326,7 +326,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-## **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**
+### **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**
 
 1. **Langkah 1: Instalasi BIND**
 
@@ -353,7 +353,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-## **Pekan 5: Integrasi DNS dan Web Server**
+### **Pekan 5: Integrasi DNS dan Web Server**
 
 1. **Langkah 1: Instalasi Web Server**
 
@@ -400,7 +400,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-## **Pekan 6: Troubleshooting DNS dan Web Server**
+### **Pekan 6: Troubleshooting DNS dan Web Server**
 
 1. **Langkah 1: Analisis Log**
 
@@ -420,7 +420,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-## **Pekan 7-12: Proyek Akhir**
+### **Pekan 7-12: Proyek Akhir**
 
 1. **Langkah 1: Perencanaan**
 
