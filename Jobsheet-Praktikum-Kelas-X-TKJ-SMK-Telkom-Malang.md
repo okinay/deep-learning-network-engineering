@@ -177,86 +177,141 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 4. **Langkah 4: Perintah Dasar Linux**
 
-   - **Navigasi File System**:
-     - Melihat isi direktori:
-       ```bash
-       ls -l
-       ```
-     - Berpindah direktori:
-       ```bash
-       cd /path/to/directory
-       ```
-     - Menampilkan direktori saat ini:
-       ```bash
-       pwd
-       ```
+   1. **Navigasi File System**  
+      - **Format Perintah**:  
+      - Melihat isi direktori:  
+         ```bash
+         ls [opsi] [direktori]
+         ```  
+      - Berpindah direktori:  
+         ```bash
+         cd [direktori]
+         ```  
+      - **Contoh Perintah**:  
+      - Menampilkan isi direktori saat ini dalam format terperinci:  
+         ```bash
+         ls -l
+         ```  
+      - Berpindah ke direktori `/etc`:  
+         ```bash
+         cd /etc
+         ```  
 
-   - **Manajemen File dan Direktori**:
-     - Membuat file kosong:
-       ```bash
-       touch nama_file
-       ```
-     - Membuat direktori:
-       ```bash
-       mkdir nama_direktori
-       ```
-     - Menghapus file atau direktori:
-       ```bash
-       rm nama_file
-       rm -r nama_direktori
-       ```
-     - Memindahkan atau mengganti nama file:
-       ```bash
-       mv file_lama file_baru
-       ```
-     - Menyalin file:
-       ```bash
-       cp file_asal file_tujuan
-       ```
+   2. **Manajemen File dan Direktori**  
+      - **Format Perintah**:  
+      - Membuat file kosong:  
+         ```bash
+         touch [nama_file]
+         ```  
+      - Membuat direktori:  
+         ```bash
+         mkdir [nama_direktori]
+         ```  
+      - Menghapus file atau direktori:  
+         ```bash
+         rm [opsi] [nama_file/direktori]
+         ```  
+      - Memindahkan atau mengganti nama file:  
+         ```bash
+         mv [nama_file] [lokasi_tujuan]
+         ```  
+      - **Contoh Perintah**:  
+      - Membuat file bernama `contoh.txt`:  
+         ```bash
+         touch contoh.txt
+         ```  
+      - Membuat direktori bernama `folder_baru`:  
+         ```bash
+         mkdir folder_baru
+         ```  
+      - Menghapus file `contoh.txt`:  
+         ```bash
+         rm contoh.txt
+         ```  
+      - Memindahkan file `contoh.txt` ke `/tmp`:  
+         ```bash
+         mv contoh.txt /tmp
+         ```  
 
-   - **Manajemen Perizinan File**:
-     - Mengubah izin file:
-       ```bash
-       chmod 755 nama_file
-       ```
-     - Mengubah kepemilikan file:
-       ```bash
-       chown user:group nama_file
-       ```
+   3. **Manajemen Perizinan File**  
+      - **Format Perintah**:  
+      - Mengubah izin file:  
+         ```bash
+         chmod [mode] [nama_file]
+         ```  
+      - Mengubah kepemilikan file:  
+         ```bash
+         chown [user]:[grup] [nama_file]
+         ```  
+      - **Contoh Perintah**:  
+      - Memberikan izin `read`, `write`, dan `execute` kepada pemilik file:  
+         ```bash
+         chmod 755 contoh.txt
+         ```  
+      - Mengubah pemilik file `contoh.txt` menjadi user `root`:  
+         ```bash
+         chown root:root contoh.txt
+         ```  
 
-   - **Pemantauan Sistem**:
-     - Menampilkan proses yang berjalan:
-       ```bash
-       ps aux
-       ```
-     - Melihat penggunaan CPU dan memori secara real-time:
-       ```bash
-       top
-       ```
+   4. **Pemantauan Sistem**  
+      - **Format Perintah**:  
+      - Melihat proses yang berjalan:  
+         ```bash
+         ps [opsi]
+         ```  
+      - Melihat penggunaan CPU dan memori secara real-time:  
+         ```bash
+         top
+         ```  
+      - **Contoh Perintah**:  
+      - Menampilkan semua proses yang berjalan dalam format lengkap:  
+         ```bash
+         ps aux
+         ```  
+      - Menjalankan **top** untuk melihat statistik penggunaan sistem:  
+         ```bash
+         top
+         ```  
 
-   - **Pengelolaan Jaringan**:
-     - Menampilkan konfigurasi jaringan:
-       ```bash
-       ip a
-       ```
-     - Menguji konektivitas jaringan:
-       ```bash
-       ping -c 4 google.com
-       ```
-     - Mengambil data HTTP:
-       ```bash
-       curl -I http://example.com
-       ```
+   5. **Pengelolaan Jaringan**  
+      - **Format Perintah**:  
+      - Menampilkan informasi jaringan:  
+         ```bash
+         ip [opsi]
+         ```  
+      - Menguji konektivitas jaringan:  
+         ```bash
+         ping [opsi] [alamat_ip/nama_domain]
+         ```  
+      - **Contoh Perintah**:  
+      - Menampilkan alamat IP dan status interface:  
+         ```bash
+         ip a
+         ```  
+      - Mengirim 4 ping ke `google.com`:  
+         ```bash
+         ping -c 4 google.com
+         ```  
 
-   - **Manajemen Paket**:
-     - Menginstal paket:
-       ```bash
-       sudo yum install nama_paket -y
-       ```
-     - Menghapus paket:
-       ```bash
-       sudo yum remove nama_paket -y
-       ```
+   6. **Manajemen Paket**  
+      - **Format Perintah**:  
+      - Menginstal paket:  
+         ```bash
+         yum install [nama_paket] -y
+         ```  
+      - Menghapus paket:  
+         ```bash
+         yum remove [nama_paket] -y
+         ```  
+      - **Contoh Perintah**:  
+      - Menginstal layanan web server `httpd`:  
+         ```bash
+         sudo yum install httpd -y
+         ```  
+      - Menghapus layanan web server `httpd`:  
+         ```bash
+         sudo yum remove httpd -y
+         ```  
 
 5. **Tugas Praktikum**:
 
