@@ -1,4 +1,4 @@
-# Jobsheet Praktikum Kelas XI TKJ SMK
+# Jobsheet Praktikum Kelas X TKJ SMK
 
 ![Logo CentOS](https://wiki.centos.org/attachments/ArtWork(2f)Brand(2f)Logo/centos-logo-light-vertical.svg)  
 
@@ -43,7 +43,7 @@ Siswa diharapkan mampu:
   - Koneksi internet stabil untuk mengunduh perangkat lunak dan pembaruan.
 - **Perangkat Lunak**:
   - VirtualBox versi terbaru (minimal 7.x).
-  - File ISO CentOS 7 atau 8 (versi terbaru direkomendasikan).
+  - File ISO CentOS 9 dan 10 (versi terbaru direkomendasikan). File ISO bisa diunduh di [centos.org](https://www.centos.org/download/).
   - Editor teks seperti Nano, Vim, atau Visual Studio Code.
 
 ---
@@ -140,42 +140,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ### **Pekan 3: Konfigurasi Dasar CentOS dan Perintah Dasar Linux**
 
-1. **Langkah 1: Update Sistem**
-
-   - Jalankan perintah berikut untuk memperbarui semua paket dalam sistem agar sesuai dengan versi terbaru:
-     ```bash
-     sudo yum update -y
-     ```
-
-2. **Langkah 2: Konfigurasi Jaringan**
-
-   - Edit file konfigurasi jaringan di direktori `/etc/sysconfig/network-scripts/` sesuai dengan nama interface yang digunakan, seperti `ifcfg-ens33`. Contoh isi file konfigurasi:
-     ```
-     TYPE=Ethernet
-     BOOTPROTO=static
-     IPADDR=192.168.1.10
-     NETMASK=255.255.255.0
-     GATEWAY=192.168.1.1
-     DNS1=8.8.8.8
-     ```
-   - Setelah melakukan konfigurasi, restart layanan jaringan:
-     ```bash
-     sudo systemctl restart network
-     ```
-
-3. **Langkah 3: Mengatur Hostname**
-
-   - Ubah hostname menggunakan perintah berikut:
-     ```bash
-     sudo hostnamectl set-hostname centos.moklet-tkj.com
-     ```
-   - Verifikasi perubahan dengan:
-     ```bash
-     hostnamectl status
-     ```
-   - Jelaskan bahwa pengaturan hostname ini membantu dalam identifikasi sistem di jaringan dan digunakan oleh layanan seperti DNS untuk resolusi nama.
-
-4. **Langkah 4: Perintah Dasar Linux**
+1. **Langkah 4: Perintah Dasar Linux**
 
    1. **Navigasi File System**  
       - **Format Perintah**:  
@@ -313,6 +278,43 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
             sudo yum remove httpd -y
             ```  
 
+
+2. **Langkah 1: Update Sistem**
+
+   - Jalankan perintah berikut untuk memperbarui semua paket dalam sistem agar sesuai dengan versi terbaru:
+     ```bash
+     sudo yum update -y
+     ```
+
+3. **Langkah 2: Konfigurasi Jaringan**
+
+   - Edit file konfigurasi jaringan di direktori `/etc/sysconfig/network-scripts/` sesuai dengan nama interface yang digunakan, seperti `ifcfg-ens33`. Contoh isi file konfigurasi:
+     ```
+     TYPE=Ethernet
+     BOOTPROTO=static
+     IPADDR=192.168.1.10
+     NETMASK=255.255.255.0
+     GATEWAY=192.168.1.1
+     DNS1=8.8.8.8
+     ```
+   - Setelah melakukan konfigurasi, restart layanan jaringan:
+     ```bash
+     sudo systemctl restart network
+     ```
+
+4. **Langkah 3: Mengatur Hostname**
+
+   - Ubah hostname menggunakan perintah berikut:
+     ```bash
+     sudo hostnamectl set-hostname centos.moklet-tkj.com
+     ```
+   - Verifikasi perubahan dengan:
+     ```bash
+     hostnamectl status
+     ```
+   - Jelaskan bahwa pengaturan hostname ini membantu dalam identifikasi sistem di jaringan dan digunakan oleh layanan seperti DNS untuk resolusi nama.
+
+
 5. **Tugas Praktikum**:
 
    - Dokumentasikan semua perintah yang dipelajari, termasuk:
@@ -420,29 +422,119 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-### **Pekan 7-12: Proyek Akhir**
+## **Studi Kasus Pekan 7-12**
 
-1. **Langkah 1: Perencanaan**
+### **Pekan 7: Konfigurasi DNS Server untuk Domain Lokal**
 
-   - Identifikasi kebutuhan proyek, seperti implementasi layanan DNS dan Web Server untuk aplikasi tertentu.
+**Deskripsi Kasus**:  
+Sebuah perusahaan kecil membutuhkan layanan DNS lokal untuk mengelola domain internal mereka, yaitu `moklet.local`. Siswa diminta mengonfigurasi DNS Server menggunakan BIND. 
 
-2. **Langkah 2: Implementasi**
+**Tugas Siswa**:  
+1. Instal layanan BIND di server CentOS.  
+2. Konfigurasi file `named.conf` untuk zona `moklet.local`.  
+3. Buat file zona untuk domain `moklet.local` dengan entri berikut:
+   - `A Record`: `www.moklet.local` mengarah ke IP `192.168.1.10`.  
+   - `MX Record`: Menunjukkan mail server `mail.moklet.local` dengan prioritas 10.  
+4. Verifikasi DNS menggunakan perintah `dig` dan `nslookup`.  
 
-   - Konfigurasi lengkap DNS dan Web Server sesuai dengan skenario proyek.
-
-3. **Langkah 3: Pengujian dan Dokumentasi**
-
-   - Uji layanan yang dikembangkan dan buat dokumentasi proyek secara menyeluruh.
-
-4. **Tugas Praktikum**:
-
-   - Presentasikan hasil proyek kepada instruktur dan teman sejawat. Pastikan presentasi mencakup beberapa aspek berikut sebagai kriteria penilaian:
-
-      - **Kelengkapan Teknis**: Apakah konfigurasi DNS dan Web Server sudah diimplementasikan secara lengkap sesuai kebutuhan proyek?
-      - **Kejelasan Dokumentasi**: Seberapa baik dokumentasi mendukung pemahaman audiens tentang proyek?
-      - **Keterampilan Penyampaian**: Seberapa efektif peserta menyampaikan ide dan temuan selama proyek berlangsung?
-      - **Pemecahan Masalah**: Apakah peserta mampu menjelaskan dan menyelesaikan kendala yang dihadapi selama implementasi?
-      - **Manfaat dan Relevansi**: Seberapa relevan proyek dengan kebutuhan dunia nyata dan bagaimana manfaatnya terhadap skenario penggunaan yang diajukan?
+**Hasil yang Diharapkan**:  
+Dokumentasikan proses konfigurasi, file konfigurasi yang digunakan, hasil pengujian, dan tangkapan layar output perintah.  
 
 ---
 
+### **Pekan 8: Membangun Web Server dengan Apache**
+
+**Deskripsi Kasus**:  
+Sebuah tim pengembang ingin meng-host aplikasi web mereka di server lokal. Siswa diminta untuk mengonfigurasi Web Server Apache pada CentOS.  
+
+**Tugas Siswa**:  
+1. Instal layanan Apache (`httpd`) di server.  
+2. Konfigurasi file `httpd.conf` untuk:
+   - Mengatur direktori dokumen root di `/var/www/html`.  
+   - Menambahkan direktori virtual untuk domain `moklet.local`.  
+3. Buat halaman web sederhana di `/var/www/html/index.html` yang menampilkan:  
+   - Nama siswa.  
+   - Pesan “Web Server berhasil dikonfigurasi!”  
+4. Pastikan layanan berjalan dan dapat diakses melalui browser di jaringan lokal.  
+
+**Hasil yang Diharapkan**:  
+Dokumentasi konfigurasi, file yang diubah, tangkapan layar akses web, dan penjelasan langkah-langkah.  
+
+---
+
+### **Pekan 9: Konfigurasi Firewall dan Keamanan Server**
+
+**Deskripsi Kasus**:  
+Administrator jaringan ingin memastikan server hanya dapat diakses melalui layanan yang diizinkan. Siswa diminta untuk mengonfigurasi firewall menggunakan `firewalld`.  
+
+**Tugas Siswa**:  
+1. Aktifkan dan konfigurasikan `firewalld` untuk:  
+   - Mengizinkan port `80` (HTTP), `443` (HTTPS), dan `53` (DNS).  
+   - Menolak akses untuk port lainnya.  
+2. Tambahkan aturan untuk mengizinkan akses SSH hanya dari IP tertentu.  
+3. Verifikasi aturan firewall menggunakan perintah `firewall-cmd --list-all`.  
+
+**Hasil yang Diharapkan**:  
+Tulis laporan berisi langkah konfigurasi, daftar aturan firewall yang diterapkan, dan hasil pengujian akses menggunakan `curl` atau perintah lainnya.  
+
+---
+
+### **Pekan 10: Mengintegrasikan DNS dan Web Server**
+
+**Deskripsi Kasus**:  
+Perusahaan membutuhkan integrasi antara DNS Server dan Web Server untuk mempermudah akses aplikasi web mereka melalui nama domain.  
+
+**Tugas Siswa**:  
+1. Integrasikan DNS yang sudah dikonfigurasi di Pekan 7 dengan Web Server dari Pekan 8.  
+2. Pastikan domain `www.moklet.local` dapat diakses melalui browser dengan mengarahkan ke IP server yang benar.  
+3. Tambahkan subdomain `admin.moklet.local` yang mengarah ke direktori `/var/www/admin` dan buat halaman `admin.html`.  
+
+**Hasil yang Diharapkan**:  
+Laporan berisi file konfigurasi DNS dan Apache yang diubah, tangkapan layar pengujian akses domain dan subdomain.  
+
+---
+
+### **Pekan 11: Troubleshooting Server**
+
+**Deskripsi Kasus**:  
+Sebuah perusahaan mengalami masalah di server mereka. Aplikasi web tidak dapat diakses, dan DNS tampaknya tidak berfungsi. Siswa diminta untuk menganalisis dan memperbaiki masalah.  
+
+**Tugas Siswa**:  
+1. Identifikasi penyebab masalah pada:  
+   - Layanan DNS (periksa file zona dan status layanan).  
+   - Layanan Web Server (periksa file log Apache).  
+2. Perbaiki kesalahan konfigurasi yang ditemukan, seperti:  
+   - Kesalahan dalam file zona DNS.  
+   - Konfigurasi yang salah pada `httpd.conf`.  
+3. Dokumentasikan langkah troubleshooting dan perbaikan.  
+
+**Hasil yang Diharapkan**:  
+Laporan troubleshooting berisi:  
+- Masalah yang ditemukan.  
+- Langkah perbaikan.  
+- Hasil pengujian setelah perbaikan dilakukan.  
+
+---
+
+### **Pekan 12: Proyek Akhir**
+
+**Deskripsi Kasus**:  
+Siswa diminta untuk menyelesaikan proyek akhir yang mengintegrasikan layanan jaringan dan server. Skenarionya adalah:  
+- Perusahaan memerlukan server yang menyediakan layanan DNS dan Web Server untuk domain `moklet-project.local`.  
+- Web Server harus memiliki dua subdomain:  
+  - `www.moklet-project.local` mengarah ke direktori `/var/www/html`.  
+  - `api.moklet-project.local` mengarah ke direktori `/var/www/api`.  
+
+**Tugas Siswa**:  
+1. Konfigurasi DNS Server untuk domain `moklet-project.local` beserta subdomainnya.  
+2. Instal dan konfigurasi Web Server untuk mendukung subdomain.  
+3. Terapkan aturan firewall untuk mengizinkan hanya layanan DNS dan HTTP/HTTPS.  
+4. Buat halaman web untuk masing-masing subdomain yang menunjukkan:  
+   - Nama siswa.  
+   - Deskripsi layanan di subdomain tersebut.  
+
+**Hasil yang Diharapkan**:  
+- Dokumentasi lengkap dari konfigurasi hingga pengujian.  
+- File konfigurasi DNS dan Apache yang digunakan.  
+- Tangkapan layar akses domain dan subdomain melalui browser.  
+- Laporan dalam format PDF.  
