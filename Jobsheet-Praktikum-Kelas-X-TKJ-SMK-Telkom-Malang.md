@@ -60,7 +60,7 @@ Siswa diharapkan mampu:
 
 #### **Latihan Praktikum**
 
-##### **Pekan 1: Pengenalan Virtualisasi dan Instalasi CentOS**
+## **Pekan 1: Pengenalan Virtualisasi dan Instalasi CentOS**
 
 1. **Langkah 1: Instalasi VirtualBox**
 
@@ -109,7 +109,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-##### **Pekan 2: Konfigurasi Virtual Machine dan Instalasi CentOS**
+## **Pekan 2: Konfigurasi Virtual Machine dan Instalasi CentOS**
 
 1. **Langkah 1: Pengaturan Virtual Machine**
 
@@ -138,7 +138,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
      - Tampilan login setelah instalasi selesai.
 ---
 
-##### **Pekan 3: Konfigurasi Dasar CentOS dan Perintah Dasar Linux**
+## **Pekan 3: Konfigurasi Dasar CentOS dan Perintah Dasar Linux**
 
 1. **Langkah 1: Update Sistem**
 
@@ -179,139 +179,139 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
    1. **Navigasi File System**  
       - **Format Perintah**:  
-      - Melihat isi direktori:  
-         ```bash
-         ls [opsi] [direktori]
-         ```  
-      - Berpindah direktori:  
-         ```bash
-         cd [direktori]
-         ```  
+         - Melihat isi direktori:  
+            ```bash
+            ls [opsi] [direktori]
+            ```  
+         - Berpindah direktori:  
+            ```bash
+            cd [direktori]
+            ```  
       - **Contoh Perintah**:  
-      - Menampilkan isi direktori saat ini dalam format terperinci:  
-         ```bash
-         ls -l
-         ```  
-      - Berpindah ke direktori `/etc`:  
-         ```bash
-         cd /etc
-         ```  
+         - Menampilkan isi direktori saat ini dalam format terperinci:  
+            ```bash
+            ls -l
+            ```  
+         - Berpindah ke direktori `/etc`:  
+            ```bash
+            cd /etc
+            ```  
 
    2. **Manajemen File dan Direktori**  
       - **Format Perintah**:  
-      - Membuat file kosong:  
-         ```bash
-         touch [nama_file]
-         ```  
-      - Membuat direktori:  
-         ```bash
-         mkdir [nama_direktori]
-         ```  
-      - Menghapus file atau direktori:  
-         ```bash
-         rm [opsi] [nama_file/direktori]
-         ```  
-      - Memindahkan atau mengganti nama file:  
-         ```bash
-         mv [nama_file] [lokasi_tujuan]
-         ```  
+         - Membuat file kosong:  
+            ```bash
+            touch [nama_file]
+            ```  
+         - Membuat direktori:  
+            ```bash
+            mkdir [nama_direktori]
+            ```  
+         - Menghapus file atau direktori:  
+            ```bash
+            rm [opsi] [nama_file/direktori]
+            ```  
+         - Memindahkan atau mengganti nama file:  
+            ```bash
+            mv [nama_file] [lokasi_tujuan]
+            ```  
       - **Contoh Perintah**:  
-      - Membuat file bernama `contoh.txt`:  
-         ```bash
-         touch contoh.txt
-         ```  
-      - Membuat direktori bernama `folder_baru`:  
-         ```bash
-         mkdir folder_baru
-         ```  
-      - Menghapus file `contoh.txt`:  
-         ```bash
-         rm contoh.txt
-         ```  
-      - Memindahkan file `contoh.txt` ke `/tmp`:  
-         ```bash
-         mv contoh.txt /tmp
-         ```  
+         - Membuat file bernama `contoh.txt`:  
+            ```bash
+            touch contoh.txt
+            ```  
+         - Membuat direktori bernama `folder_baru`:  
+            ```bash
+            mkdir folder_baru
+            ```  
+         - Menghapus file `contoh.txt`:  
+            ```bash
+            rm contoh.txt
+            ```  
+         - Memindahkan file `contoh.txt` ke `/tmp`:  
+            ```bash
+            mv contoh.txt /tmp
+            ```  
 
    3. **Manajemen Perizinan File**  
       - **Format Perintah**:  
-      - Mengubah izin file:  
-         ```bash
-         chmod [mode] [nama_file]
-         ```  
-      - Mengubah kepemilikan file:  
-         ```bash
-         chown [user]:[grup] [nama_file]
-         ```  
+         - Mengubah izin file:  
+            ```bash
+            chmod [mode] [nama_file]
+            ```  
+         - Mengubah kepemilikan file:  
+            ```bash
+            chown [user]:[grup] [nama_file]
+            ```  
       - **Contoh Perintah**:  
-      - Memberikan izin `read`, `write`, dan `execute` kepada pemilik file:  
-         ```bash
-         chmod 755 contoh.txt
-         ```  
-      - Mengubah pemilik file `contoh.txt` menjadi user `root`:  
-         ```bash
-         chown root:root contoh.txt
-         ```  
+         - Memberikan izin `read`, `write`, dan `execute` kepada pemilik file:  
+            ```bash
+            chmod 755 contoh.txt
+            ```  
+         - Mengubah pemilik file `contoh.txt` menjadi user `root`:  
+            ```bash
+            chown root:root contoh.txt
+            ```  
 
    4. **Pemantauan Sistem**  
       - **Format Perintah**:  
-      - Melihat proses yang berjalan:  
-         ```bash
-         ps [opsi]
-         ```  
-      - Melihat penggunaan CPU dan memori secara real-time:  
-         ```bash
-         top
-         ```  
+         - Melihat proses yang berjalan:  
+            ```bash
+            ps [opsi]
+            ```  
+         - Melihat penggunaan CPU dan memori secara real-time:  
+            ```bash
+            top
+            ```  
       - **Contoh Perintah**:  
-      - Menampilkan semua proses yang berjalan dalam format lengkap:  
-         ```bash
-         ps aux
-         ```  
-      - Menjalankan **top** untuk melihat statistik penggunaan sistem:  
-         ```bash
-         top
-         ```  
+         - Menampilkan semua proses yang berjalan dalam format lengkap:  
+            ```bash
+            ps aux
+            ```  
+         - Menjalankan **top** untuk melihat statistik penggunaan sistem:  
+            ```bash
+            top
+            ```  
 
    5. **Pengelolaan Jaringan**  
       - **Format Perintah**:  
-      - Menampilkan informasi jaringan:  
-         ```bash
-         ip [opsi]
-         ```  
-      - Menguji konektivitas jaringan:  
-         ```bash
-         ping [opsi] [alamat_ip/nama_domain]
-         ```  
+         - Menampilkan informasi jaringan:  
+            ```bash
+            ip [opsi]
+            ```  
+         - Menguji konektivitas jaringan:  
+            ```bash
+            ping [opsi] [alamat_ip/nama_domain]
+            ```  
       - **Contoh Perintah**:  
-      - Menampilkan alamat IP dan status interface:  
-         ```bash
-         ip a
-         ```  
-      - Mengirim 4 ping ke `google.com`:  
-         ```bash
-         ping -c 4 google.com
-         ```  
+         - Menampilkan alamat IP dan status interface:  
+            ```bash
+            ip a
+            ```  
+         - Mengirim 4 ping ke `google.com`:  
+            ```bash
+            ping -c 4 google.com
+            ```  
 
    6. **Manajemen Paket**  
       - **Format Perintah**:  
-      - Menginstal paket:  
-         ```bash
-         yum install [nama_paket] -y
-         ```  
-      - Menghapus paket:  
-         ```bash
-         yum remove [nama_paket] -y
-         ```  
+         - Menginstal paket:  
+            ```bash
+            yum install [nama_paket] -y
+            ```  
+         - Menghapus paket:  
+            ```bash
+            yum remove [nama_paket] -y
+            ```  
       - **Contoh Perintah**:  
-      - Menginstal layanan web server `httpd`:  
-         ```bash
-         sudo yum install httpd -y
-         ```  
-      - Menghapus layanan web server `httpd`:  
-         ```bash
-         sudo yum remove httpd -y
-         ```  
+         - Menginstal layanan web server `httpd`:  
+            ```bash
+            sudo yum install httpd -y
+            ```  
+         - Menghapus layanan web server `httpd`:  
+            ```bash
+            sudo yum remove httpd -y
+            ```  
 
 5. **Tugas Praktikum**:
 
@@ -326,7 +326,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-##### **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**
+## **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**
 
 1. **Langkah 1: Instalasi BIND**
 
@@ -353,7 +353,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-##### **Pekan 5: Integrasi DNS dan Web Server**
+## **Pekan 5: Integrasi DNS dan Web Server**
 
 1. **Langkah 1: Instalasi Web Server**
 
@@ -400,7 +400,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-##### **Pekan 6: Troubleshooting DNS dan Web Server**
+## **Pekan 6: Troubleshooting DNS dan Web Server**
 
 1. **Langkah 1: Analisis Log**
 
@@ -420,7 +420,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ---
 
-##### **Pekan 7-12: Proyek Akhir**
+## **Pekan 7-12: Proyek Akhir**
 
 1. **Langkah 1: Perencanaan**
 
