@@ -330,6 +330,34 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ### **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**
 
+DNS Server merupakan layanan penting dalam jaringan yang bertanggung jawab untuk menerjemahkan nama domain menjadi alamat IP. Pada praktikum ini, siswa akan mempelajari langkah-langkah instalasi dan konfigurasi DNS Server menggunakan BIND di CentOS.
+
+Kenapa DNS Server Penting?
+-------------------------
+DNS Server memainkan peran kunci dalam jaringan komputer modern. Beberapa alasan mengapa DNS Server penting adalah:
+- **Mengurangi Ketergantungan pada IP**: Dengan menggunakan nama domain, pengguna tidak perlu mengingat alamat IP yang panjang dan rumit.
+- **Memudahkan Manajemen Jaringan**: DNS Server memungkinkan pengelolaan domain dan subdomain dengan mudah.
+- **Meningkatkan Keamanan**: DNS Server dapat digunakan untuk mengarahkan lalu lintas ke server yang aman dan mencegah serangan phishing.
+- **Meningkatkan Kinerja**: DNS Server dapat mempercepat proses pengalihan lalu lintas dengan mengoptimalkan resolusi nama.
+- **Meningkatkan Fleksibilitas**: DNS Server memungkinkan penggunaan subdomain dan konfigurasi yang kompleks sesuai kebutuhan.
+- **Meningkatkan Kualitas Layanan**: DNS Server memungkinkan penyedia layanan untuk menyediakan layanan yang andal dan mudah diakses.
+
+Cara kerja DNS Server:
+----------------------
+1. **Resolusi Nama**: Ketika pengguna memasukkan nama domain (misalnya `www.google.com`) ke dalam browser, DNS Server bertugas untuk menerjemahkan nama domain tersebut menjadi alamat IP yang sesuai (misalnya `11.12.13.14`).
+2. **Zona DNS**: DNS Server menyimpan informasi tentang domain dalam zona DNS, yang berisi catatan tentang nama domain, alamat IP, dan konfigurasi lainnya.
+3. **Pertanyaan DNS**: Ketika pengguna meminta akses ke sumber daya dengan nama domain, DNS Server menerima pertanyaan DNS dan mencari informasi yang sesuai dalam zona DNS.
+4. **Balasan DNS**: Setelah menemukan informasi yang diperlukan, DNS Server mengirimkan balasan DNS ke pengguna dengan alamat IP yang sesuai.
+5. **Penggunaan**: Pengguna dapat mengakses sumber daya dengan menggunakan alamat IP yang diberikan oleh DNS Server.
+6. **Pengelolaan**: DNS Server dapat diatur dan dikelola untuk memperbarui informasi zona DNS, menambahkan subdomain, dan mengatur kebijakan akses.
+7. **Pengujian**: DNS Server dapat diuji untuk memastikan bahwa informasi yang diberikan sesuai dengan yang diharapkan dan layanan berjalan dengan baik.
+8. **Pemeliharaan**: DNS Server perlu dipelihara secara teratur untuk memastikan ketersediaan dan keandalan layanan.
+9. **Pengembangan**: DNS Server dapat dikembangkan untuk menambahkan fitur baru, meningkatkan kinerja, dan memperluas fungsionalitas.
+
+Gambar cara kerja DNS Server: 
+---------------------------
+![DNS Server](https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-server-workflow.svg)
+
 #### **Materi Pembelajaran**  
 
 1. **Langkah 1: Instalasi BIND**  
