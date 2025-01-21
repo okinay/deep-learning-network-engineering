@@ -132,37 +132,142 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 4. **Tugas Praktikum**:
 
    - Buat laporan proses instalasi dengan catatan konfigurasi yang digunakan.
-
+   - Sertakan tangkapan layar dari setiap langkah instalasi, termasuk:
+     - Pemilihan bahasa dan software.
+     - Konfigurasi partisi dan hostname.
+     - Tampilan login setelah instalasi selesai.
 ---
 
-##### **Pekan 3: Konfigurasi Dasar CentOS**
+##### **Pekan 3: Konfigurasi Dasar CentOS dan Perintah Dasar Linux**
 
 1. **Langkah 1: Update Sistem**
 
-   - Jalankan perintah berikut untuk memperbarui sistem:
+   - Jalankan perintah berikut untuk memperbarui semua paket dalam sistem agar sesuai dengan versi terbaru:
      ```bash
      sudo yum update -y
      ```
 
 2. **Langkah 2: Konfigurasi Jaringan**
 
-   - Edit file konfigurasi jaringan di `/etc/sysconfig/network-scripts/ifcfg-<interface>`.
-   - Set IP statis, subnet mask, dan gateway.
+   - Edit file konfigurasi jaringan di direktori `/etc/sysconfig/network-scripts/` sesuai dengan nama interface yang digunakan, seperti `ifcfg-ens33`. Contoh isi file konfigurasi:
+     ```
+     TYPE=Ethernet
+     BOOTPROTO=static
+     IPADDR=192.168.1.10
+     NETMASK=255.255.255.0
+     GATEWAY=192.168.1.1
+     DNS1=8.8.8.8
+     ```
+   - Setelah melakukan konfigurasi, restart layanan jaringan:
+     ```bash
+     sudo systemctl restart network
+     ```
 
 3. **Langkah 3: Mengatur Hostname**
 
-   - Ubah hostname menggunakan perintah berikut dan pastikan siswa memahami bagaimana perintah ini memengaruhi konfigurasi jaringan secara keseluruhan:
+   - Ubah hostname menggunakan perintah berikut:
      ```bash
      sudo hostnamectl set-hostname centos.moklet-tkj.com
      ```
-     Dengan perintah ini, sistem akan mengatur hostname menjadi "centos.moklet-tkj.com," yang digunakan untuk identifikasi di jaringan. Pengaturan ini penting karena hostname akan muncul dalam berbagai log jaringan dan digunakan oleh layanan seperti DNS untuk resolusi nama yang benar. Pastikan setelah menjalankan perintah ini, siswa memverifikasi perubahan dengan:
+   - Verifikasi perubahan dengan:
      ```bash
      hostnamectl status
      ```
+   - Jelaskan bahwa pengaturan hostname ini membantu dalam identifikasi sistem di jaringan dan digunakan oleh layanan seperti DNS untuk resolusi nama.
 
-4. **Tugas Praktikum**:
+4. **Langkah 4: Perintah Dasar Linux**
 
-   - Dokumentasikan konfigurasi jaringan dan hostname.
+   - **Navigasi File System**:
+     - Melihat isi direktori:
+       ```bash
+       ls -l
+       ```
+     - Berpindah direktori:
+       ```bash
+       cd /path/to/directory
+       ```
+     - Menampilkan direktori saat ini:
+       ```bash
+       pwd
+       ```
+
+   - **Manajemen File dan Direktori**:
+     - Membuat file kosong:
+       ```bash
+       touch nama_file
+       ```
+     - Membuat direktori:
+       ```bash
+       mkdir nama_direktori
+       ```
+     - Menghapus file atau direktori:
+       ```bash
+       rm nama_file
+       rm -r nama_direktori
+       ```
+     - Memindahkan atau mengganti nama file:
+       ```bash
+       mv file_lama file_baru
+       ```
+     - Menyalin file:
+       ```bash
+       cp file_asal file_tujuan
+       ```
+
+   - **Manajemen Perizinan File**:
+     - Mengubah izin file:
+       ```bash
+       chmod 755 nama_file
+       ```
+     - Mengubah kepemilikan file:
+       ```bash
+       chown user:group nama_file
+       ```
+
+   - **Pemantauan Sistem**:
+     - Menampilkan proses yang berjalan:
+       ```bash
+       ps aux
+       ```
+     - Melihat penggunaan CPU dan memori secara real-time:
+       ```bash
+       top
+       ```
+
+   - **Pengelolaan Jaringan**:
+     - Menampilkan konfigurasi jaringan:
+       ```bash
+       ip a
+       ```
+     - Menguji konektivitas jaringan:
+       ```bash
+       ping -c 4 google.com
+       ```
+     - Mengambil data HTTP:
+       ```bash
+       curl -I http://example.com
+       ```
+
+   - **Manajemen Paket**:
+     - Menginstal paket:
+       ```bash
+       sudo yum install nama_paket -y
+       ```
+     - Menghapus paket:
+       ```bash
+       sudo yum remove nama_paket -y
+       ```
+
+5. **Tugas Praktikum**:
+
+   - Dokumentasikan semua perintah yang dipelajari, termasuk:
+     1. **Penjelasan**: Tujuan dan fungsi setiap perintah.
+     2. **Hasil Eksekusi**: Screenshot atau deskripsi hasil dari setiap perintah.
+     3. **Penerapan**: Contoh penerapan perintah dalam situasi nyata, seperti mengelola file konfigurasi jaringan atau memantau koneksi server.
+   - Laporan harus mencakup tangkapan layar berikut:
+     - Hasil konfigurasi jaringan.
+     - Hasil pengujian koneksi menggunakan `ping`.
+     - Daftar proses yang berjalan menggunakan `ps aux`.
 
 ---
 
