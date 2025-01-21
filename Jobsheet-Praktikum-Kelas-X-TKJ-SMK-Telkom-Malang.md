@@ -140,7 +140,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ### **Pekan 3: Konfigurasi Dasar CentOS dan Perintah Dasar Linux**
 
-1. **Langkah 4: Perintah Dasar Linux**
+1. **Langkah 1: Perintah Dasar Linux**
 
    1. **Navigasi File System**  
       - **Format Perintah**:  
@@ -279,14 +279,14 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
             ```  
 
 
-2. **Langkah 1: Update Sistem**
+2. **Langkah 2: Update Sistem**
 
    - Jalankan perintah berikut untuk memperbarui semua paket dalam sistem agar sesuai dengan versi terbaru:
      ```bash
      sudo yum update -y
      ```
 
-3. **Langkah 2: Konfigurasi Jaringan**
+3. **Langkah 3: Konfigurasi Jaringan**
 
    - Edit file konfigurasi jaringan di direktori `/etc/sysconfig/network-scripts/` sesuai dengan nama interface yang digunakan, seperti `ifcfg-ens33`. Contoh isi file konfigurasi:
      ```
@@ -302,7 +302,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
      sudo systemctl restart network
      ```
 
-4. **Langkah 3: Mengatur Hostname**
+4. **Langkah 4: Mengatur Hostname**
 
    - Ubah hostname menggunakan perintah berikut:
      ```bash
@@ -330,28 +330,116 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ### **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**
 
-1. **Langkah 1: Instalasi BIND**
+Berikut adalah detail materi untuk **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**:
 
-   - Instal layanan DNS Server menggunakan perintah berikut:
+---
+
+### **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**  
+
+#### **Materi Pembelajaran**  
+
+1. **Langkah 1: Instalasi BIND**  
+   - Jalankan perintah berikut untuk menginstal layanan BIND:  
      ```bash
      sudo yum install bind bind-utils -y
+     ```  
+   - Pastikan paket BIND terinstal dengan memeriksa versinya:  
+     ```bash
+     named -v
      ```
 
-2. **Langkah 2: Konfigurasi named.conf**
+2. **Langkah 2: Konfigurasi `named.conf`**  
+   - File utama untuk konfigurasi BIND adalah `/etc/named.conf`.  
+   - Buka file untuk diedit:  
+     ```bash
+     sudo nano /etc/named.conf
+     ```  
+   - Sesuaikan pengaturan agar hanya perangkat tertentu dapat mengakses DNS Server:  
+     ```bash
+     options {
+         listen-on port 53 { 127.0.0.1; 192.168.1.0/24; }; // Ubah IP sesuai jaringan
+         allow-query     { localhost; 192.168.1.0/24; }; // IP yang diizinkan untuk query
+         recursion yes;
+     };
+     ```  
+   - Tambahkan konfigurasi zona untuk domain "moklet-tkj.com":  
+     ```bash
+     zone "moklet-tkj.com" IN {
+         type master;
+         file "/var/named/moklet-tkj.com.zone";
+         allow-update { none; };
+     };
+     ```  
 
-   - Edit file `/etc/named.conf` dan sesuaikan pengaturan zona.
+3. **Langkah 3: Membuat File Zona DNS**  
+   - File zona berisi informasi tentang domain yang dilayani oleh DNS Server.  
+   - Buat file zona di direktori `/var/named/`:  
+     ```bash
+     sudo nano /var/named/moklet-tkj.com.zone
+     ```  
+   - Isi file dengan konfigurasi berikut:  
+     ```bash
+     $TTL 86400
+     @   IN  SOA     ns1.moklet-tkj.com. admin.moklet-tkj.com. (
+                 2025011301 ; Serial
+                 3600       ; Refresh
+                 1800       ; Retry
+                 604800     ; Expire
+                 86400 )    ; Minimum TTL
+     ;
+     @   IN  NS      ns1.moklet-tkj.com.
+     ns1 IN  A       192.168.1.1
+     www IN  A       192.168.1.2
+     ```  
 
-3. **Langkah 3: Membuat Zona DNS**
+4. **Langkah 4: Menyesuaikan Permissions**  
+   - Pastikan file zona memiliki izin yang benar:  
+     ```bash
+     sudo chown root:named /var/named/moklet-tkj.com.zone
+     sudo chmod 640 /var/named/moklet-tkj.com.zone
+     ```  
 
-   - Tambahkan file zona untuk domain "moklet-tkj.com" di direktori `/var/named`.
+5. **Langkah 5: Menjalankan dan Menguji DNS Server**  
+   - Mulai layanan BIND:  
+     ```bash
+     sudo systemctl start named
+     sudo systemctl enable named
+     ```  
+   - Periksa status layanan:  
+     ```bash
+     sudo systemctl status named
+     ```  
+   - Tambahkan aturan firewall untuk DNS:  
+     ```bash
+     sudo firewall-cmd --permanent --add-port=53/udp
+     sudo firewall-cmd --permanent --add-port=53/tcp
+     sudo firewall-cmd --reload
+     ```  
+   - Uji DNS menggunakan perintah berikut:  
+     ```bash
+     dig @192.168.1.1 www.moklet-tkj.com
+     nslookup www.moklet-tkj.com 192.168.1.1
+     ```  
 
-4. **Langkah 4: Pengujian DNS**
+---
 
-   - Gunakan perintah `dig` dan `nslookup` untuk memastikan DNS berfungsi.
+#### **Tugas Praktikum**  
 
-5. **Tugas Praktikum**:
+1. **Konfigurasi DNS Server**  
+   - Konfigurasikan DNS Server menggunakan BIND untuk domain "moklet-tkj.com".  
+   - Buat subdomain tambahan seperti `mail.moklet-tkj.com` dan pastikan dapat diakses.  
 
-   - Laporkan hasil konfigurasi dan pengujian DNS Server.
+2. **Pengujian DNS**  
+   - Gunakan perintah `dig` dan `nslookup` untuk memastikan DNS Server dapat melayani query.  
+   - Dokumentasikan hasil pengujian, termasuk tangkapan layar dari perintah berikut:  
+     - `dig @<IP_Server> <domain>`  
+     - `nslookup <domain> <IP_Server>`  
+
+3. **Laporan Praktikum**  
+   - Buat laporan berisi:  
+     - Konfigurasi file `/etc/named.conf` dan file zona.  
+     - Hasil pengujian DNS Server.  
+     - Penjelasan fungsi DNS Server dalam jaringan dan manfaatnya.  
 
 ---
 
