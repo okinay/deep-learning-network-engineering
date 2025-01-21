@@ -330,12 +330,6 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ### **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**
 
-Berikut adalah detail materi untuk **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**:
-
----
-
-### **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**  
-
 #### **Materi Pembelajaran**  
 
 1. **Langkah 1: Instalasi BIND**  
@@ -420,8 +414,6 @@ Berikut adalah detail materi untuk **Pekan 4: Instalasi dan Konfigurasi BIND (DN
      dig @192.168.1.1 www.moklet-tkj.com
      nslookup www.moklet-tkj.com 192.168.1.1
      ```  
-
----
 
 #### **Tugas Praktikum**  
 
