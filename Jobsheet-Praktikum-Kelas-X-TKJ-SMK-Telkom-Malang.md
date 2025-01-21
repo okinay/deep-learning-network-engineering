@@ -140,9 +140,38 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 ### **Pekan 3: Konfigurasi Dasar CentOS dan Perintah Dasar Linux**
 
+Sebelum melanjutkan ke instalasi layanan jaringan, siswa perlu memahami konfigurasi dasar CentOS dan perintah dasar Linux. Pada praktikum ini, siswa akan mempelajari langkah-langkah dasar untuk mengelola sistem operasi dan memahami perintah dasar yang digunakan dalam lingkungan Linux. 
+
+Dan siswa perlu tahu terkait dengan hirarki direktori pada linux, berikut adalah penjelasannya: 
+Gambar Hirarki Direktori Linux
+![Hirarki Direktori Linux](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOQ7VdeB3zTl7w6VhCQdw9tAJKcXcj1UO7FbJJ_GRQfjj4cnus_zIIzkMgunmi94zMpBF40O1qpUuoiz3C3OEPSeZjNP4kvWSrQDmSOyKODggY3M5otnxkzwfMx8gwkB2wZIg3F-e0pnY/s1600/linux-filesystem.png)
+
+- `/` : direktori root, merupakan direktori utama pada sistem operasi Linux.
+- `/bin` : berisi file biner (eksekutabel) yang digunakan oleh pengguna dan sistem.
+- `/boot` : berisi file yang diperlukan untuk proses booting sistem.
+- `/dev` : berisi file yang terkait dengan perangkat keras.
+- `/etc` : berisi file konfigurasi sistem.
+- `/home` : berisi direktori pengguna.
+- `/lib` : berisi library yang digunakan oleh program.
+- `/media` : berisi direktori untuk media penyimpanan sementara.
+- `/mnt` : berisi direktori untuk media penyimpanan sementara.
+- `/opt` : berisi direktori untuk paket aplikasi tambahan.
+- `/proc` : berisi informasi proses sistem.
+- `/root` : direktori home untuk pengguna root.
+- `/run` : berisi file yang dibuat oleh sistem saat boot.
+- `/sbin` : berisi file biner (eksekutabel) yang digunakan oleh sistem.
+- `/srv` : berisi data yang disediakan oleh server.
+- `/sys` : berisi informasi tentang perangkat keras.
+- `/tmp` : berisi file sementara.
+- `/usr` : berisi file yang tidak berubah selama sistem berjalan.
+- `/var` : berisi file yang sering berubah saat sistem berjalan.
+
+Untuk memahami konfigurasi dasar CentOS dan perintah dasar Linux, siswa akan mempelajari langkah-langkah berikut:
+
 1. **Langkah 1: Perintah Dasar Linux**
 
-   1. **Navigasi File System**  
+   1. **Navigasi File System** 
+   Di Linux, direktori dan file diatur dalam struktur hirarkis. Perintah dasar untuk navigasi file system adalah: 
       - **Format Perintah**:  
          - Melihat isi direktori:  
             ```bash
@@ -163,6 +192,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
             ```  
 
    2. **Manajemen File dan Direktori**  
+   Perintah dasar untuk manajemen file dan direktori adalah: 
       - **Format Perintah**:  
          - Membuat file kosong:  
             ```bash
@@ -198,7 +228,8 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
             mv contoh.txt /tmp
             ```  
 
-   3. **Manajemen Perizinan File**  
+   3. **Manajemen Perizinan File** 
+   Perintah dasar untuk manajemen perizinan file adalah:
       - **Format Perintah**:  
          - Mengubah izin file:  
             ```bash
@@ -219,6 +250,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
             ```  
 
    4. **Pemantauan Sistem**  
+   Perintah dasar untuk pemantauan sistem adalah:
       - **Format Perintah**:  
          - Melihat proses yang berjalan:  
             ```bash
@@ -239,6 +271,7 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
             ```  
 
    5. **Pengelolaan Jaringan**  
+   Perintah dasar untuk pengelolaan jaringan adalah:
       - **Format Perintah**:  
          - Menampilkan informasi jaringan:  
             ```bash
@@ -258,7 +291,8 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
             ping -c 4 google.com
             ```  
 
-   6. **Manajemen Paket**  
+   6. **Manajemen Paket**
+   Perintah dasar untuk manajemen paket adalah:  
       - **Format Perintah**:  
          - Menginstal paket:  
             ```bash
@@ -332,6 +366,14 @@ Gunakan format dokumen PDF untuk laporan dan pastikan setiap tangkapan layar dib
 
 DNS Server merupakan layanan penting dalam jaringan yang bertanggung jawab untuk menerjemahkan nama domain menjadi alamat IP. Pada praktikum ini, siswa akan mempelajari langkah-langkah instalasi dan konfigurasi DNS Server menggunakan BIND di CentOS.
 
+Apa itu domain dan nama domain?
+-------------------------------
+Sebelum kita mempelajari konfigurasi DNS Server, mari kita pahami terlebih dahulu konsep dasar tentang domain dan nama domain.
+
+Domain adalah nama unik yang digunakan untuk mengidentifikasi situs web atau server di internet. Nama domain adalah alamat yang digunakan oleh pengguna untuk mengakses sumber daya di internet, seperti `www.google.com` atau `mail.yahoo.com`. Nama domain terdiri dari dua bagian: nama utama **(top-level domain)** dan nama spesifik **(second-level domain)**. Contoh top-level domain adalah `.com`, `.org`, atau `.net`, sedangkan second-level domain adalah nama unik yang diberikan kepada situs web atau server. Nama domain memungkinkan pengguna untuk mengakses sumber daya dengan mudah tanpa perlu mengingat alamat IP yang rumit. 
+
+![TLD dan SLD](https://iili.io/2i1xiil.md.jpg)
+
 Kenapa DNS Server Penting?
 -------------------------
 DNS Server memainkan peran kunci dalam jaringan komputer modern. Beberapa alasan mengapa DNS Server penting adalah:
@@ -356,7 +398,7 @@ Cara kerja DNS Server:
 
 Gambar cara kerja DNS Server: 
 ---------------------------
-![DNS Server](https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-server-workflow.svg)
+![DNS Server](https://cf-assets.www.cloudflare.com/slt3lc6tev37/1NzaAqpEFGjqTZPAS02oNv/bf7b3f305d9c35bde5c5b93a519ba6d5/what_is_a_dns_server_dns_lookup.png)
 
 #### **Materi Pembelajaran**  
 
