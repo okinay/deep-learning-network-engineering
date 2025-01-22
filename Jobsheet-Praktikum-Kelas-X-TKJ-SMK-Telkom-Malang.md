@@ -170,7 +170,7 @@ Untuk memahami konfigurasi dasar CentOS dan perintah dasar Linux, siswa akan mem
 
 1. **Langkah 1: Perintah Dasar Linux**
 
-   1. **Navigasi File System** 
+   1. **Navigasi File System**
    Di Linux, direktori dan file diatur dalam struktur hirarkis. Perintah dasar untuk navigasi file system adalah: 
       - **Format Perintah**:  
          - Melihat isi direktori:  
@@ -191,7 +191,7 @@ Untuk memahami konfigurasi dasar CentOS dan perintah dasar Linux, siswa akan mem
             cd /etc
             ```  
 
-   2. **Manajemen File dan Direktori**  
+   2. **Manajemen File dan Direktori**
    Perintah dasar untuk manajemen file dan direktori adalah: 
       - **Format Perintah**:  
          - Membuat file kosong:  
