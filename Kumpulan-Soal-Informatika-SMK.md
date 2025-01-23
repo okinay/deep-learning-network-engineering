@@ -830,7 +830,7 @@ e. XNOR
 
 ---
 
-**62. Suatu rangkaian logika memiliki tiga input (A, B, C) dan menghasilkan output \(Y = (A \cdot B)' + C\). Jika \(A = 1\), \(B = 0\), dan \(C = 1\), berapakah nilai \(Y\)?**  
+**62. Suatu rangkaian logika memiliki tiga input (A, B, C) dan menghasilkan output $$(Y = (A \cdot B)' + C\). Jika \(A = 1\), \(B = 0\), dan \(C = 1\), berapakah nilai \(Y\)$$?**  
 a. 0  
 b. 1  
 c. Tidak dapat ditentukan  
@@ -904,7 +904,7 @@ e. Menghubungkan perangkat dengan internet
 ---
 
 ### **Gerbang Logika**  
-**67. Jika sebuah gerbang logika memiliki dua input (A dan B) dan menghasilkan output \(Y = A \cdot B + A' \cdot B'\), maka gerbang logika apakah itu?**  
+**67. Jika sebuah gerbang logika memiliki dua input (A dan B) dan menghasilkan output $$(Y = A \cdot B + A' \cdot B'\)$$, maka gerbang logika apakah itu?**  
 a. AND  
 b. OR  
 c. XOR  
@@ -912,11 +912,11 @@ d. XNOR
 e. NAND  
 
 **Kunci Jawaban:** d. XNOR  
-**Pembahasan:** Fungsi \(Y = A \cdot B + A' \cdot B'\) menghasilkan output 1 jika kedua input sama (baik 0 atau 1), sehingga sesuai dengan gerbang XNOR.  
+**Pembahasan:** Fungsi $$(Y = A \cdot B + A' \cdot B'\)$$ menghasilkan output 1 jika kedua input sama (baik 0 atau 1), sehingga sesuai dengan gerbang XNOR.  
 
 ---
 
-**68. Dalam sebuah rangkaian logika, output \(Y = (A + B)'\). Jika \(A = 1\) dan \(B = 0\), berapakah nilai \(Y\)?**  
+**68. Dalam sebuah rangkaian logika, output $$(Y = (A + B)'\). Jika \(A = 1\) dan \(B = 0\)$$, berapakah nilai $$(Y\)$$?**  
 a. 0  
 b. 1  
 c. 2  
@@ -925,8 +925,8 @@ e. Tidak dapat ditentukan
 
 **Kunci Jawaban:** a. 0  
 **Pembahasan:** Langkah penyelesaian:  
-1. \(A + B = 1 + 0 = 1\)  
-2. Negasi: \((A + B)' = 0\)  
+1. $$(A + B = 1 + 0 = 1\) $$ 
+2. Negasi: $$((A + B)' = 0\)  $$
 
 ---
 
@@ -939,10 +939,8 @@ d. 164
 e. 165  
 
 **Kunci Jawaban:** c. 163  
-**Pembahasan:** Bilangan heksadesimal \(A3 = (A \cdot 16^1) + (3 \cdot 16^0)\):  
-\[
-(10 \cdot 16) + (3 \cdot 1) = 160 + 3 = 163
-\]  
+**Pembahasan:** Bilangan heksadesimal $$(A3 = (A \cdot 16^1) + (3 \cdot 16^0)\)$$:  
+$$(10 \cdot 16) + (3 \cdot 1) = 160 + 3 = 163$$ 
 
 ---
 
@@ -1044,9 +1042,7 @@ e. 0
 
 **Kunci Jawaban:** a. 6  
 **Pembahasan:** Fungsi ini menghitung faktorial dengan rekursi:  
-\[
-3 \times 2 \times 1 = 6
-\]  
+$$3 \times 2 \times 1 = 6$$
 
 ---
 
@@ -1085,9 +1081,7 @@ e. 23
 
 **Kunci Jawaban:** c. 21  
 **Pembahasan:** Bilangan biner 10101 dikonversi ke desimal:  
-\[
-(1 \cdot 2^4) + (0 \cdot 2^3) + (1 \cdot 2^2) + (0 \cdot 2^1) + (1 \cdot 2^0) = 16 + 0 + 4 + 0 + 1 = 21
-\]  
+$$(1 \cdot 2^4) + (0 \cdot 2^3) + (1 \cdot 2^2) + (0 \cdot 2^1) + (1 \cdot 2^0) = 16 + 0 + 4 + 0 + 1 = 21$$  
 
 ---
 
