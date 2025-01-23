@@ -855,9 +855,9 @@ e. 15
 
 **Kunci Jawaban:** c. 13  
 **Pembahasan:** Bilangan biner 1101 dikonversi ke desimal:  
-\[
+$$
 (1 \cdot 2^3) + (1 \cdot 2^2) + (0 \cdot 2^1) + (1 \cdot 2^0) = 8 + 4 + 0 + 1 = 13
-\]  
+$$  
 
 ---
 
