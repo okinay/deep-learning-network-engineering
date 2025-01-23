@@ -817,6 +817,7 @@ Berikut adalah tambahan soal untuk memenuhi kisi-kisi **gerbang logika**, **sist
 | 0 | 1 | 1      |
 | 1 | 0 | 1      |
 | 1 | 1 | 0      |  
+
 Gerbang logika apa yang sesuai dengan tabel kebenaran di atas?  
 a. AND  
 b. OR  
