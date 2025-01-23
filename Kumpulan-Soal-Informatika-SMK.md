@@ -939,8 +939,8 @@ d. 164
 e. 165  
 
 **Kunci Jawaban:** c. 163  
-**Pembahasan:** Bilangan heksadesimal $$(A3 = (A \cdot 16^1) + (3 \cdot 16^0)\):  
-(10 \cdot 16) + (3 \cdot 1) = 160 + 3 = 163$$ 
+**Pembahasan:** Bilangan heksadesimal $$(A3 = (A \cdot 16^1) + (3 \cdot 16^0)\):$$  
+                                    $$(10 \cdot 16) + (3 \cdot 1) = 160 + 3 = 163$$ 
 
 ---
 
