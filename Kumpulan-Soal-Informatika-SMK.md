@@ -839,9 +839,9 @@ e. 2
 
 **Kunci Jawaban:** b. 1  
 **Pembahasan:** Langkah penyelesaian:  
-1. Hitung $\(A \cdot B = 1 \cdot 0 = 0\).  
-2. Negasi $\( (A \cdot B)' = 1\).  
-3. $\(Y = 1 + C = 1 + 1 = 1\) (karena dalam logika, 1 + apa pun = 1).  
+1. Hitung $$(A \cdot B = 1 \cdot 0 = 0\)$$.  
+2. Negasi $$( (A \cdot B)' = 1\)$$.  
+3. $$(Y = 1 + C = 1 + 1 = 1\)$$ (karena dalam logika, 1 + apa pun = 1).  
 
 ---
 
