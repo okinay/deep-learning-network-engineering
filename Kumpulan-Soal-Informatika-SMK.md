@@ -6,9 +6,11 @@ c. Sorting and Filtering
 d. Exhaustive Search  
 e. Dynamic Programming  
 
+<details>
+<summary>Klik untuk melihat jawaban</summary>
 **Kunci Jawaban:** c. Sorting and Filtering  
 **Pembahasan:** Sorting dan filtering adalah strategi optimal untuk menganalisis data dengan volume besar. Teknik ini membantu menyusun data sehingga pola dapat diidentifikasi dengan lebih mudah. Divide and Conquer lebih cocok untuk masalah rekursif, sedangkan Dynamic Programming lebih sesuai untuk masalah dengan submasalah yang berulang.
-
+</details>
 ---
 
 **2. Dalam algoritma komputasi, bagaimana cara menentukan jalur terpendek antara dua titik pada peta dengan menggunakan konsep graf?**  
@@ -940,7 +942,7 @@ e. 165
 
 **Kunci Jawaban:** c. 163  
 **Pembahasan:** Bilangan heksadesimal $$(A3 = (A \cdot 16^1) + (3 \cdot 16^0)\):$$  
-                                    $$(10 \cdot 16) + (3 \cdot 1) = 160 + 3 = 163$$ 
+$$(10 \cdot 16) + (3 \cdot 1) = 160 + 3 = 163$$ 
 
 ---
 
