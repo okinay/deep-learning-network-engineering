@@ -8,7 +8,7 @@ e. Dynamic Programming
 
 <details>
 <summary>Klik untuk melihat jawaban</summary>
-<b>Kunci Jawaban:</b> c. Sorting and Filtering  < /br>
+<b>Kunci Jawaban:</b> c. Sorting and Filtering  <br />
 <b>>Pembahasan:</b> Sorting dan filtering adalah strategi optimal untuk menganalisis data dengan volume besar. Teknik ini membantu menyusun data sehingga pola dapat diidentifikasi dengan lebih mudah. Divide and Conquer lebih cocok untuk masalah rekursif, sedangkan Dynamic Programming lebih sesuai untuk masalah dengan submasalah yang berulang.
 </details>
 ---
