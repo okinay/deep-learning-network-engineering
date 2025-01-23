@@ -839,9 +839,9 @@ e. 2
 
 **Kunci Jawaban:** b. 1  
 **Pembahasan:** Langkah penyelesaian:  
-1. Hitung \(A \cdot B = 1 \cdot 0 = 0\).  
-2. Negasi \( (A \cdot B)' = 1\).  
-3. \(Y = 1 + C = 1 + 1 = 1\) (karena dalam logika, 1 + apa pun = 1).  
+1. Hitung $\(A \cdot B = 1 \cdot 0 = 0\).  
+2. Negasi $\( (A \cdot B)' = 1\).  
+3. $\(Y = 1 + C = 1 + 1 = 1\) (karena dalam logika, 1 + apa pun = 1).  
 
 ---
 
@@ -855,9 +855,7 @@ e. 15
 
 **Kunci Jawaban:** c. 13  
 **Pembahasan:** Bilangan biner 1101 dikonversi ke desimal:  
-$$
-(1 \cdot 2^3) + (1 \cdot 2^2) + (0 \cdot 2^1) + (1 \cdot 2^0) = 8 + 4 + 0 + 1 = 13
-$$
+$$(1 \cdot 2^3) + (1 \cdot 2^2) + (0 \cdot 2^1) + (1 \cdot 2^0) = 8 + 4 + 0 + 1 = 13$$
 
 ---
 
