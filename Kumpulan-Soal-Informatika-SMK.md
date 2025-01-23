@@ -830,7 +830,7 @@ e. XNOR
 
 ---
 
-**62. Suatu rangkaian logika memiliki tiga input (A, B, C) dan menghasilkan output $$(Y = (A \cdot B)' + C\). Jika \(A = 1\), \(B = 0\), dan \(C = 1\), berapakah nilai \(Y\)$$?**  
+**62. Suatu rangkaian logika memiliki tiga input (A, B, C) dan menghasilkan output $$(Y = (A \cdot B)' + C\)$$. Jika $$(A = 1\)$$, $$(B = 0\)$$, dan $$(C = 1\)$$, berapakah nilai $$(Y\)$$?**  
 a. 0  
 b. 1  
 c. Tidak dapat ditentukan  
@@ -916,7 +916,7 @@ e. NAND
 
 ---
 
-**68. Dalam sebuah rangkaian logika, output $$(Y = (A + B)'\). Jika \(A = 1\) dan \(B = 0\)$$, berapakah nilai $$(Y\)$$?**  
+**68. Dalam sebuah rangkaian logika, output $$(Y = (A + B)'\)$$. Jika $$(A = 1\)$$ dan $$(B = 0\)$$, berapakah nilai $$(Y\)$$?**  
 a. 0  
 b. 1  
 c. 2  
@@ -939,8 +939,8 @@ d. 164
 e. 165  
 
 **Kunci Jawaban:** c. 163  
-**Pembahasan:** Bilangan heksadesimal $$(A3 = (A \cdot 16^1) + (3 \cdot 16^0)\)$$:  
-$$(10 \cdot 16) + (3 \cdot 1) = 160 + 3 = 163$$ 
+**Pembahasan:** Bilangan heksadesimal $$(A3 = (A \cdot 16^1) + (3 \cdot 16^0)\):  
+(10 \cdot 16) + (3 \cdot 1) = 160 + 3 = 163$$ 
 
 ---
 
