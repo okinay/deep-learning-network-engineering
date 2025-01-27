@@ -362,10 +362,12 @@ Dalam simulasi dengan VirtualBox, siswa perlu mengetahui konfigurasi jaringan ya
    - **Bridge Network**: Mode Bridge Network digunakan untuk menghubungkan mesin virtual ke jaringan fisik. Mesin virtual akan mendapatkan alamat IP dari jaringan fisik.
    - **Internal Network**: Mode Internal Network digunakan untuk menghubungkan mesin virtual dengan mesin virtual lain dalam jaringan tertutup. Mesin virtual tidak dapat terhubung ke jaringan eksternal.
    
-   Berikut penggambaran dari konfigurasi jaringan pada VirtualBox:
+**Berikut penggambaran dari konfigurasi jaringan pada VirtualBox:**
+   
    ![Konfigurasi Jaringan](https://musaamin.web.id/wp-content/uploads/2016/09/jaringan-virtualbox.jpg)
 
-   Dalam praktikum ini siswa akan menggunakan mode NAT dan Host-Only Network untuk konfigurasi jaringan. Berikut gambaran dari konfigurasi jaringan yang akan digunakan:
+**Dalam praktikum ini siswa akan menggunakan mode NAT dan Host-Only Network untuk konfigurasi jaringan. Berikut gambaran dari konfigurasi jaringan yang akan digunakan:**
+  
    ![Topologi Jaringan VirtualBox](https://iili.io/2LsjU2p.md.png)
 
 1. **Langkah 1: Konfigurasi Interface Jaringan pada VirtualBox**
