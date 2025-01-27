@@ -319,24 +319,9 @@ Untuk memahami konfigurasi dasar CentOS dan perintah dasar Linux, siswa akan mem
      ```bash
      sudo yum update -y
      ```
+      
 
-3. **Langkah 3: Konfigurasi Jaringan**
-
-   - Edit file konfigurasi jaringan di direktori `/etc/sysconfig/network-scripts/` sesuai dengan nama interface yang digunakan, seperti `ifcfg-ens33`. Contoh isi file konfigurasi:
-     ```
-     TYPE=Ethernet
-     BOOTPROTO=static
-     IPADDR=192.168.1.10
-     NETMASK=255.255.255.0
-     GATEWAY=192.168.1.1
-     DNS1=8.8.8.8
-     ```
-   - Setelah melakukan konfigurasi, restart layanan jaringan:
-     ```bash
-     sudo systemctl restart network
-     ```
-
-4. **Langkah 4: Mengatur Hostname**
+3. **Langkah 4: Mengatur Hostname**
 
    - Ubah hostname menggunakan perintah berikut:
      ```bash
@@ -349,20 +334,91 @@ Untuk memahami konfigurasi dasar CentOS dan perintah dasar Linux, siswa akan mem
    - Jelaskan bahwa pengaturan hostname ini membantu dalam identifikasi sistem di jaringan dan digunakan oleh layanan seperti DNS untuk resolusi nama.
 
 
-5. **Tugas Praktikum**:
+4. **Tugas Praktikum**:
 
    - Dokumentasikan semua perintah yang dipelajari, termasuk:
      1. **Penjelasan**: Tujuan dan fungsi setiap perintah.
      2. **Hasil Eksekusi**: Screenshot atau deskripsi hasil dari setiap perintah.
      3. **Penerapan**: Contoh penerapan perintah dalam situasi nyata, seperti mengelola file konfigurasi jaringan atau memantau koneksi server.
    - Laporan harus mencakup tangkapan layar berikut:
-     - Hasil konfigurasi jaringan.
-     - Hasil pengujian koneksi menggunakan `ping`.
-     - Daftar proses yang berjalan menggunakan `ps aux`.
+      - Hasil setiap perintah yang dijalankan.
+      - Hasil pengujian koneksi menggunakan `ping`.
+      - Daftar proses yang berjalan menggunakan `ps aux`.
+   - Laporan dalam bentuk Google Docs yang dapat diakses oleh instruktur.
+   - Kirim link laporan ke instruktur melalui Google Form yang disediakan.
 
 ---
 
-### **Pekan 4: Instalasi dan Konfigurasi BIND (DNS Server)**
+### **Pekan 4: Konfigurasi Jaringan**
+Sebelum melakukan konfigurasi jaringan, siswa perlu tahu terkait dengan konfigurasi jaringan pada linux, berikut adalah penjelasannya:
+   - **Alamat IP**: Alamat IP adalah alamat unik yang diberikan kepada setiap perangkat dalam jaringan. Alamat IP terdiri dari 4 bagian yang dipisahkan oleh titik, seperti `192.168.100.1`.
+   - **Subnet Mask**: Subnet mask digunakan untuk membagi alamat IP menjadi dua bagian: bagian jaringan dan bagian host. Subnet mask biasanya ditulis dalam format desimal, seperti `255.255.255.0`.
+   - **Gateway**: Gateway adalah alamat IP dari router atau perangkat jaringan lain yang digunakan untuk menghubungkan jaringan lokal ke jaringan eksternal.
+   - **DNS**: DNS (Domain Name System) adalah sistem yang digunakan untuk mengubah nama domain menjadi alamat IP. DNS digunakan untuk menghubungkan nama domain seperti `google.com` ke alamat IP yang sesuai.
+
+Dalam simulasi dengan VirtualBox, siswa perlu mengetahui konfigurasi jaringan yang digunakan, berikut adalah penjelasannya:
+   - **NAT (Network Address Translation)**: Mode NAT digunakan untuk menghubungkan mesin virtual ke internet melalui jaringan host. Mesin virtual akan mendapatkan alamat IP dari jaringan host.
+   - **Host-Only Network**: Mode Host-Only Network digunakan untuk menghubungkan mesin virtual dengan host dan mesin virtual lain dalam jaringan tertutup. Mesin virtual akan mendapatkan alamat IP dari jaringan host-only.
+   - **Bridge Network**: Mode Bridge Network digunakan untuk menghubungkan mesin virtual ke jaringan fisik. Mesin virtual akan mendapatkan alamat IP dari jaringan fisik.
+   - **Internal Network**: Mode Internal Network digunakan untuk menghubungkan mesin virtual dengan mesin virtual lain dalam jaringan tertutup. Mesin virtual tidak dapat terhubung ke jaringan eksternal.
+   
+   Berikut penggambaran dari konfigurasi jaringan pada VirtualBox:
+   ![Konfigurasi Jaringan](https://musaamin.web.id/wp-content/uploads/2016/09/jaringan-virtualbox.jpg)
+
+   Dalam praktikum ini siswa akan menggunakan mode NAT dan Host-Only Network untuk konfigurasi jaringan. Berikut gambaran dari konfigurasi jaringan yang akan digunakan:
+   [![Topologi Jaringan VirtualBox](https://iili.io/2LsjU2p.md.png)]
+
+1. **Langkah 1: Konfigurasi Interface Jaringan pada VirtualBox**
+   - Sebelum menambahkan interface jaringan baru pada VirtualBox, pastikan mesin virtual CentOS sudah dimatikan.
+   - Pastikan mode jaringan pada Adapter 1 mesin virtual adalah "NAT".
+   - Tambahkan interface jaringan baru pada Adapter 2 dengan mode "Host-Only Network".
+   - Atur konfigurasi jaringan pada mesin virtual CentOS menggunakan NetworkManager. 
+   - Periksa informasi interface jaringan menggunakan perintah `nmcli` seperti berikut:
+      ```bash
+      nmcli connection show
+      ```
+
+2. **Langkah 2: Konfigurasi IP Statis**
+   - Pastikan pada perintah `nmcli` sudah terdapat interface jaringan baru yang ditambahkan.
+   - Perhatikan nama interface jaringan yang akan dikonfigurasi, misalnya `enp0s8`.
+   - Nama interface yang atas adalah interface NAT, sedangkan yang bawah adalah interface Host-Only Network.
+      [![Nama Interface](https://iili.io/2LLf61S.md.png)]
+   - Atur IP statis pada interface Host-Only Network dengan IP Address `192.168.100.1` dan subnet mask `255.255.255.0` menggunakan perintah `nmcli` seperti berikut:
+      ```bash
+      nmcli connection modify enp0s8 ipv4.addresses 192.168.100.1/24 ipv4.method manual
+      ```
+   - Aktifkan interface jaringan yang telah dikonfigurasi menggunakan perintah `nmcli`:
+      ```bash
+      nmcli connection up enp0s8
+      ```
+   - Verifikasi konfigurasi IP menggunakan perintah `ip`:
+      ```bash
+      ip a
+      ```
+   - Pastikan interface jaringan sudah aktif dan mendapatkan alamat IP yang sesuai.
+
+3. **Langkah 3: Konfigurasi IP Address pada Host VirtualBox**
+   - Buka VirtualBox dan pilih menu "File" > "Host Network Manager".
+   - Pastikan terdapat interface jaringan yang sesuai dengan konfigurasi IP pada mesin virtual CentOS.
+   - Periksa alamat IP yang diberikan pada interface Host-Only Network.
+
+3. **Langkah 4: Uji Konektivitas**
+   - Uji konektivitas antara mesin virtual CentOS dan host menggunakan perintah `ping` dengan mengetikkan perintah berikut dari Host ke Guest pada terminal atau command prompt:
+      ```bash
+      ping 192.168.100.1
+      ```
+   - Pastikan koneksi berhasil dan tidak ada paket yang hilang.
+
+4. **Tugas Praktikum** 
+   - Dokumentasikan langkah-langkah konfigurasi jaringan yang dilakukan, termasuk:
+     1. **Penjelasan**: Tujuan dan manfaat konfigurasi jaringan.
+     2. **Hasil Konfigurasi**: Screenshot atau deskripsi hasil konfigurasi IP statis.
+     3. **Pengujian Konektivitas**: Hasil pengujian konektivitas antara mesin virtual dan host.
+   - Laporan dalam bentuk Google Docs yang dapat diakses oleh instruktur.
+   - Kirim link laporan ke instruktur melalui Google Form yang disediakan.
+
+---
+### **Pekan 5: Instalasi dan Konfigurasi BIND (DNS Server)**
 
 DNS Server merupakan layanan penting dalam jaringan yang bertanggung jawab untuk menerjemahkan nama domain menjadi alamat IP. Pada praktikum ini, siswa akan mempelajari langkah-langkah instalasi dan konfigurasi DNS Server menggunakan BIND di CentOS.
 
@@ -505,7 +561,7 @@ Gambar cara kerja DNS Server:
 
 ---
 
-### **Pekan 5: Integrasi DNS dan Web Server**
+### **Pekan 6: Integrasi DNS dan Web Server**
 
 1. **Langkah 1: Instalasi Web Server**
 
@@ -552,7 +608,7 @@ Gambar cara kerja DNS Server:
 
 ---
 
-### **Pekan 6: Troubleshooting DNS dan Web Server**
+### **Pekan 7: Troubleshooting DNS dan Web Server**
 
 1. **Langkah 1: Analisis Log**
 
@@ -572,9 +628,9 @@ Gambar cara kerja DNS Server:
 
 ---
 
-## **Studi Kasus Pekan 7-12**
+## **Studi Kasus Pekan 8-13**
 
-### **Pekan 7: Konfigurasi DNS Server untuk Domain Lokal**
+### **Pekan 8: Konfigurasi DNS Server untuk Domain Lokal**
 
 **Deskripsi Kasus**:  
 Sebuah perusahaan kecil membutuhkan layanan DNS lokal untuk mengelola domain internal mereka, yaitu `moklet.local`. Siswa diminta mengonfigurasi DNS Server menggunakan BIND. 
@@ -592,7 +648,7 @@ Dokumentasikan proses konfigurasi, file konfigurasi yang digunakan, hasil penguj
 
 ---
 
-### **Pekan 8: Membangun Web Server dengan Apache**
+### **Pekan 9: Membangun Web Server dengan Apache**
 
 **Deskripsi Kasus**:  
 Sebuah tim pengembang ingin meng-host aplikasi web mereka di server lokal. Siswa diminta untuk mengonfigurasi Web Server Apache pada CentOS.  
@@ -612,7 +668,7 @@ Dokumentasi konfigurasi, file yang diubah, tangkapan layar akses web, dan penjel
 
 ---
 
-### **Pekan 9: Konfigurasi Firewall dan Keamanan Server**
+### **Pekan 10: Konfigurasi Firewall dan Keamanan Server**
 
 **Deskripsi Kasus**:  
 Administrator jaringan ingin memastikan server hanya dapat diakses melalui layanan yang diizinkan. Siswa diminta untuk mengonfigurasi firewall menggunakan `firewalld`.  
@@ -629,7 +685,7 @@ Tulis laporan berisi langkah konfigurasi, daftar aturan firewall yang diterapkan
 
 ---
 
-### **Pekan 10: Mengintegrasikan DNS dan Web Server**
+### **Pekan 11: Mengintegrasikan DNS dan Web Server**
 
 **Deskripsi Kasus**:  
 Perusahaan membutuhkan integrasi antara DNS Server dan Web Server untuk mempermudah akses aplikasi web mereka melalui nama domain.  
@@ -644,7 +700,7 @@ Laporan berisi file konfigurasi DNS dan Apache yang diubah, tangkapan layar peng
 
 ---
 
-### **Pekan 11: Troubleshooting Server**
+### **Pekan 12: Troubleshooting Server**
 
 **Deskripsi Kasus**:  
 Sebuah perusahaan mengalami masalah di server mereka. Aplikasi web tidak dapat diakses, dan DNS tampaknya tidak berfungsi. Siswa diminta untuk menganalisis dan memperbaiki masalah.  
@@ -666,7 +722,7 @@ Laporan troubleshooting berisi:
 
 ---
 
-### **Pekan 12: Proyek Akhir**
+### **Pekan 13: Proyek Akhir**
 
 **Deskripsi Kasus**:  
 Siswa diminta untuk menyelesaikan proyek akhir yang mengintegrasikan layanan jaringan dan server. Skenarionya adalah:  
