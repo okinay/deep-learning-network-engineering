@@ -366,7 +366,7 @@ Dalam simulasi dengan VirtualBox, siswa perlu mengetahui konfigurasi jaringan ya
    ![Konfigurasi Jaringan](https://musaamin.web.id/wp-content/uploads/2016/09/jaringan-virtualbox.jpg)
 
    Dalam praktikum ini siswa akan menggunakan mode NAT dan Host-Only Network untuk konfigurasi jaringan. Berikut gambaran dari konfigurasi jaringan yang akan digunakan:
-   [![Topologi Jaringan VirtualBox](https://iili.io/2LsjU2p.md.png)]
+   ![Topologi Jaringan VirtualBox](https://iili.io/2LsjU2p.md.png)
 
 1. **Langkah 1: Konfigurasi Interface Jaringan pada VirtualBox**
    - Sebelum menambahkan interface jaringan baru pada VirtualBox, pastikan mesin virtual CentOS sudah dimatikan.
@@ -382,7 +382,7 @@ Dalam simulasi dengan VirtualBox, siswa perlu mengetahui konfigurasi jaringan ya
    - Pastikan pada perintah `nmcli` sudah terdapat interface jaringan baru yang ditambahkan.
    - Perhatikan nama interface jaringan yang akan dikonfigurasi, misalnya `enp0s8`.
    - Nama interface yang atas adalah interface NAT, sedangkan yang bawah adalah interface Host-Only Network.
-      [![Nama Interface](https://iili.io/2LLf61S.md.png)]
+      ![Nama Interface](https://iili.io/2LLf61S.md.png)
    - Atur IP statis pada interface Host-Only Network dengan IP Address `192.168.100.1` dan subnet mask `255.255.255.0` menggunakan perintah `nmcli` seperti berikut:
       ```bash
       nmcli connection modify enp0s8 ipv4.addresses 192.168.100.1/24 ipv4.method manual
