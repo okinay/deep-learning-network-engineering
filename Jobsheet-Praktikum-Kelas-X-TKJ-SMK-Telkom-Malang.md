@@ -310,7 +310,26 @@ Untuk memahami konfigurasi dasar CentOS dan perintah dasar Linux, siswa akan mem
          - Menghapus layanan web server `httpd`:  
             ```bash
             sudo yum remove httpd -y
-            ```  
+            ``` 
+
+   7. **Text Editor Nano**
+   Perintah dasar untuk text editor adalah:
+      - **Format Perintah**:
+         - Membuka file:
+         ```bash
+         nano [nama_file]
+         ```
+      - **Contoh Perintah**
+         - Membuka file `contoh.txt`:
+         ```bash
+         nano contoh.txt
+         ```
+      - **Menyimpan Hasil Editing**
+         - Kombinasi tombol `Ctrl` + `O`
+
+      - **Keluar Dari Editor**
+         - Kombinasi tombol `Ctrl` + `X`
+
 
 
 2. **Langkah 2: Update Sistem**
