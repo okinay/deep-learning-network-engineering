@@ -1,27 +1,15 @@
 # 📘 Jobsheet Praktikum: Deep Learning Network Engineering
-## Kelas X TKJ - SMK Telkom Malang (Curated Edition)
+## Kelas X TKJ - SMK Telkom Malang (Detailed Edition)
 
 ![CentOS](https://wiki.centos.org/attachments/ArtWork(2f)Brand(2f)Logo/centos-logo-light-vertical.svg)
 
 ---
 
 ### 📌 Ringkasan Program
-Jobsheet ini adalah panduan komprehensif bagi siswa untuk menguasai teknologi jaringan dan server menggunakan CentOS. Kurikulum ini dirancang untuk membawa siswa dari tingkat pemula (dasar virtualisasi) hingga mampu mengelola infrastruktur server yang kompleks (DNS & Web Server).
+Jobsheet ini adalah panduan komprehensif bagi siswa untuk menguasai teknologi jaringan dan server menggunakan CentOS. Kurikulum ini dirancang untuk membawa siswa dari tingkat pemula (dasar virtualisasi) hingga mampu mengelola infrastruktur server yang kompleks.
 
 > [!NOTE]
-> **Tujuan Utama**: Membekali siswa dengan keterampilan teknis (hard skills) dan dokumentasi profesional (soft skills) yang relevan dengan standar industri IT masa kini.
-
----
-
-### 🛠️ Persiapan Awal
-Sebelum memulai, pastikan perangkat Anda memenuhi spesifikasi berikut:
-
-- **Perangkat Keras**: Laptop/PC dengan RAM Minimal 8GB, Penyimpanan Bebas 100GB.
-- **Koneksi**: Internet stabil untuk unduhan ISO dan update paket.
-- **Perangkat Lunak**:
-  - [VirtualBox 7.x+](https://www.virtualbox.org/)
-  - [ISO CentOS 9 Stream / 10](https://www.centos.org/download/)
-  - Editor Teks: Nano, Vim, atau VS Code.
+> **Tujuan Utama**: Membekali siswa dengan keterampilan teknis (*hard skills*) dan dokumentasi profesional (*soft skills*) yang relevan dengan standar industri IT masa kini.
 
 ---
 
@@ -29,176 +17,172 @@ Sebelum memulai, pastikan perangkat Anda memenuhi spesifikasi berikut:
 *(Estimasi: Pekan 1 - 2)*
 
 ### 🟦 Pekan 1: Pengenalan Lingkungan Virtual
-Fokus pada instalasi tool utama dan pembuatan lingkungan virtual yang stabil.
+Siswa belajar mengelola *Virtual Machine* (VM) sebagai simulasi server nyata.
 
-1. **Instalasi VirtualBox**: Pastikan instalasi berhasil tanpa error driver.
-2. **Setup Virtual Machine (VM)**:
+1. **Instalasi VirtualBox**: Pastikan mengunduh versi 7.x atau terbaru.
+2. **Setup VM**:
    - Nama: `CentOS-VM`
-   - Tipe: `Linux`, Versi: `Red Hat (64-bit)`
-   - RAM: Minimal `2048MB` (2GB).
-3. **Mounting ISO**: Menghubungkan file ISO CentOS ke storage VM.
-
-> [!TIP]
-> Gunakan alokasi RAM yang cukup (misal 4GB jika laptop Anda memiliki 16GB) agar proses instalasi berjalan lebih cepat.
-
-#### 📝 Tugas Pekan 1:
-Buat laporan (PDF) yang berisi screenshot tahapan pembuatan VM dan penjelasan singkat mengenai konfigurasi hardware yang Anda pilih.
+   - RAM: `2048MB` (Min) - `4096MB` (Recom).
+   - Storage: `20GB` Dynamic Allocated.
+3. **Mounting ISO**: Masukkan file ISO CentOS ke tab **Storage > Controller IDE**.
 
 ---
 
-### 🟦 Pekan 2: Instalasi & Konfigurasi OS
-Fokus pada proses instalasi CentOS yang optimal untuk server.
+### 🟦 Pekan 2: Instalasi CentOS dengan Pendekatan Server
+Instalasi dilakukan dengan mode **Minimal Install** untuk meminimalkan beban sistem.
 
-1. **Konfigurasi Jaringan VM**: Gunakan mode **"Bridged Adapter"** agar VM bisa mendapatkan akses internet langsung saat instalasi.
-2. **Parameter Instalasi**:
-   - **Language**: English (Standard industri).
-   - **Software Selection**: **Minimal Install** (Untuk performa maksimal).
-   - **Partitioning**: Automatic.
-   - **Hostname**: `centos.local`.
-3. **Login Pertama**: Verifikasi user `root` dan pastikan sistem dapat booting dengan sempurna.
+1. **Network Configuration**: Interface pertama diatur ke **Bridged Adapter** untuk akses internet.
+2. **Software Selection**: Pilih **"Minimal Install"**.
+3. **Partitioning**: Pilih **"Automatic"** (LVM secara default).
+4. **Post-Installation**: Setelah reboot, login menggunakan user `root`.
 
 ---
 
-## 💻 Modul 2: Eksplorasi Linux & Manajemen Jaringan
+## 💻 Modul 2: Eksplorasi Linux & Remote Management
 *(Estimasi: Pekan 3 - 4)*
 
-### 🟦 Pekan 3: Penguasaan Terminal & Hirarki Sistem
-Sangat krusial untuk memahami struktur folder Linux sebelum mengelola layanan.
+### 🟦 Pekan 3: Penguasaan Terminal (Deep Dive)
+Terminal adalah alat utama administrator server. Berikut adalah detail perintah yang wajib dikuasai:
 
-#### 📂 Hirarki Direktori Utama:
-- `/etc`: Pusat konfigurasi sistem (Jantung server).
-- `/var`: Data dinamis (log, database, web files).
-- `/root` & `/home`: Area kerja user.
-- `/bin` & `/sbin`: Command executable.
+#### 1. Navigasi & File System
+- `pwd` (Print Working Directory): Mengetahui posisi folder saat ini.
+- `ls -lah`: Menampilkan list file beserta file tersembunyi (`a`), format detail (`l`), dan ukuran yang mudah dibaca/human-readable (`h`).
+- `cd /var/log`: Pindah ke direktori log sistem.
+- `touch file.txt`: Membuat file kosong baru.
+- `mkdir -p folder/subfolder`: Membuat folder beserta parent-nya sekaligus.
 
-#### ⌨️ Skill Wajib (Basic Commands):
-| Perintah | Fungsi | Contoh |
-| :--- | :--- | :--- |
-| `ls -l` | List file detail | `ls -l /etc` |
-| `cd` | Pindah direktori | `cd /var/www` |
-| `mkdir` | Membuat folder | `mkdir project1` |
-| `chmod` | Izin akses | `chmod 755 script.sh` |
-| `yum update` | Update sistem | `sudo yum update -y` |
+#### 2. Manajemen Izin (Permissions)
+- `chmod 755`: Owner bisa segalanya (Read/Write/Execute), Group & Others hanya Read/Execute.
+- `chown root:named /var/named/zonefile`: Mengubah pemilik file menjadi user `root` dan group `named`.
 
----
-
-### 🟦 Pekan 4: Konfigurasi Jaringan Lanjut
-Mengatur konektivitas antar mesin (Host-to-Guest).
-
-1. **Dual Network Interface**:
-   - **Adapter 1**: NAT (Untuk akses internet).
-   - **Adapter 2**: Host-Only (Untuk komunikasi antara laptop Anda dan VM).
-2. **Setup IP Statis**:
-   Menggunakan NMCLI untuk interface Host-Only:
-   ```bash
-   # Contoh interface enp0s8
-   nmcli connection modify enp0s8 ipv4.addresses 192.168.100.1/24 ipv4.method manual
-   nmcli connection up enp0s8
-   ```
-3. **Uji Koneksi**: Pastikan laptop Anda bisa melakukan `ping 192.168.100.1`.
+#### 3. Update & Package Manager (YUM/DNF)
+- `sudo yum update -y`: Memperbarui semua repository dan paket ke versi terbaru.
+- `sudo yum install <nama_paket>`: Mencari dan mengunduh paket dari internet.
 
 ---
 
-## 🌐 Modul 3: Layanan Inti Jaringan (DNS & Web Server)
+### 🟦 Pekan 4: Remote Server Management (SSH & SCP)
+Administrator jarang menyentuh server secara fisik; mereka menggunakan koneksi remote yang aman.
+
+#### 1. Setup SSH (Secure Shell)
+Secara default CentOS sudah mengaktifkan SSH di port 22.
+- **Cek Status**: `systemctl status sshd`
+- **Remote dari Host/Laptop**:
+  Buka Windows Terminal atau PowerShell (Pastikan IP VM bisa diping):
+  ```bash
+  ssh root@192.168.100.1
+  ```
+  *(Masukkan password root saat diminta).*
+
+#### 2. Pengiriman File Aman (SCP)
+Mengirim file dari Laptop (Host) ke Server (Guest) atau sebaliknya:
+- **Kirim dari Host ke Server**:
+  ```bash
+  scp tugas.pdf root@192.168.100.1:/home/root/
+  ```
+- **Ambil dari Server ke Host**:
+  ```bash
+  scp root@192.168.100.1:/var/log/messages ./log_copy.txt
+  ```
+
+> [!TIP]
+> Gunakan aplikasi **WinSCP** (Windows) atau **FileZilla** untuk manajemen file server dengan antarmuka grafis (GUI) melalui protokol SFTP/SSH.
+
+---
+
+## 🌐 Modul 3: Layanan Inti Jaringan (Detailed Config)
 *(Estimasi: Pekan 5 - 6)*
 
 ### 🟦 Pekan 5: DNS Server (BIND)
-Memahami sistem penerjemahan nama domain ke IP.
+Langkah detail konfigurasi BIND untuk domain `moklet-tkj.com`.
 
-1. **Instalasi BIND**:
+1. **Instalasi**: `sudo yum install bind bind-utils -y`.
+2. **Edit `/etc/named.conf`**:
    ```bash
-   sudo yum install bind bind-utils -y
+   listen-on port 53 { 127.0.0.1; any; }; # Izinkan listen di semua IP
+   allow-query { any; };                  # Izinkan query dari mana saja
    ```
-2. **Konfigurasi `named.conf`**: Fokus pada IP Listen dan Allow-Query.
-3. **Zona DNS**: Menambahkan domain `moklet-tkj.com`.
-4. **File Zona**: Mengisi A-Record dan NS-Record.
-
-> [!IMPORTANT]
-> Jangan lupa mengatur izin file (Permissions) ke `root:named` pada direktori `/var/named/` agar service BIND dapat membaca konfigurasi zona.
-
-#### 🔭 Uji DNS:
-Verifikasi dengan `dig` atau `nslookup`:
-```bash
-dig @192.168.1.1 www.moklet-tkj.com
-```
+3. **Membuat Zone File (`/var/named/moklet-tkj.com.zone`)**:
+   ```bash
+   $TTL 86400
+   @ IN SOA ns1.moklet-tkj.com. admin.moklet-tkj.com. ( 2025010101 3600 1800 604800 86400 )
+   @   IN NS  ns1.moklet-tkj.com.
+   ns1 IN A   192.168.100.1
+   www IN A   192.168.100.1
+   ```
+4. **Verifikasi**: `named-checkconf /etc/named.conf` dan `named-checkzone moklet-tkj.com /var/named/moklet-tkj.com.zone`.
 
 ---
 
 ### 🟦 Pekan 6: Web Server (Apache)
-Implementasi Virtual Host untuk menghosting banyak situs.
+Implementasi Virtual Host untuk website sekolah.
 
-1. **Instalasi Apache**: `sudo yum install httpd -y`.
-2. **Virtual Host**: Setup domain `moklet-tkj.com` di `/etc/httpd/conf.d/`.
-3. **Integrasi**: Pastikan DNS mengarah ke IP Server dan Web Server menyajikan file `index.html` yang benar.
+1. **Instalasi**: `sudo yum install httpd -y`.
+2. **File Config Host (`/etc/httpd/conf.d/moklet.conf`)**:
+   ```apache
+   <VirtualHost *:80>
+       ServerName moklet-tkj.com
+       DocumentRoot /var/www/html/moklet
+   </VirtualHost>
+   ```
+3. **Aktivasi**:
+   ```bash
+   mkdir -p /var/www/html/moklet
+   echo "Selamat Datang di Web Lab TKJ" > /var/www/html/moklet/index.html
+   systemctl restart httpd
+   ```
 
 ---
 
-## 🔍 Modul 4: Diagnosa & Troubleshooting
+## 🔍 Modul 4: Security & Troubleshooting
 *(Estimasi: Pekan 7)*
 
-Fokus pada penyelesaian masalah (Troubleshooting) yang sering muncul.
+### 🛡️ Firewall Management (Firewalld)
+Server tidak akan bisa diakses jika port tidak dibuka di firewall.
+- `firewall-cmd --permanent --add-service=dns`
+- `firewall-cmd --permanent --add-service=http`
+- `firewall-cmd --reload`
 
-1. **Analisis Log**:
-   - `/var/log/messages`: Error sistem/DNS.
-   - `/var/log/httpd/error_log`: Error Apache.
-2. **Uji Konektivitas**: Gunakan `ping`, `dig`, and `curl`.
-3. **Common Issues**: Firewall blocking port 80/53, Syntax error in config files.
-
-> [!CAUTION]
-> Selalu reboot service (`systemctl restart service`) setelah melakukan perubahan pada file konfigurasi mana pun.
-
----
-
-## 🚀 Praktikum Lanjut: Studi Kasus & Proyek Akhir
-*(Estimasi: Pekan 8 - 13)*
-
-Program ini diakhiri dengan serangkaian tantangan dunia nyata untuk menguji kemandirian siswa.
-
-### 💼 Pekan 8 - 12: Seri Tantangan Korporat
-- **Pekan 8**: Domain Lokal Bisnis (`moklet.local`).
-- **Pekan 9**: Hosting Landing Page Tim Dev.
-- **Pekan 10**: Hardening Server (Firewall Configuration).
-- **Pekan 11**: Integrasi Subdomain (`admin.moklet.local`).
-- **Pekan 12**: Disaster Recovery (Simulasi kerusakan server).
-
-### 🏆 Pekan 13: Proyek Akhir Terintegrasi
-Membangun infrastruktur full-stack untuk `moklet-project.local` dengan dua subdomain (`www` & `api`) serta pengamanan firewall yang ketat.
+### 🔧 Troubleshooting Loop
+Jika service gagal jalan (`Failed`), gunakan:
+1. `journalctl -xe`: Melihat error log terbaru.
+2. `systemctl status <service>`: Cek baris error spesifik.
+3. `ping` & `dig`: Cek koneksi fisik dan resolusi nama.
 
 ---
 
-## 🛠️ Command Toolbox (Cheat Sheet)
+## 🚀 Praktikum Lanjut: Studi Kasus & Proyek
+*(Pekan 8 - 13)*
 
-### 🐧 Sistem & File
-- `hostnamectl set-hostname <nama>` : Mengubah nama server.
-- `top` : Monitoring penggunaan RAM & CPU.
-- `ls -la` : Melihat semua file termasuk hidden files.
-- `nano /path/ke/file` : Mengedit file teks dengan cepat.
+Fokus pada kemandirian siswa dalam menghadapi skenario industri:
+- **Pekan 8-11**: Implementasi Subdomain dan Hardening (Keamanan).
+- **Pekan 12**: Simulasi Disaster Recovery (Perbaikan konfigurasi yang rusak).
+- **Pekan 13**: **Proyek Akhir Terintegrasi** (Full setup DNS + Web + Remote + Firewall).
 
-### 🌐 Jaringan & Service
-- `ip a` : Cek IP Address yang aktif.
-- `nmcli connection show` : Melihat list koneksi jaringan.
-- `systemctl start <service>` : Menjalankan layanan (httpd, named).
-- `systemctl enable <service>` : Membuat layanan otomatis jalan saat boot.
+---
 
-### 🛡️ Firewall (Kritis)
-- `firewall-cmd --add-port=80/tcp --permanent` : Membuka port Web.
-- `firewall-cmd --reload` : Menerapkan perubahan firewall.
+## 🛠️ Command Toolbox (Quick Reference)
+
+| Kategori | Perintah | Deskripsi |
+| :--- | :--- | :--- |
+| **System** | `systemctl restart <name>` | Me-restart layanan |
+| | `hostnamectl` | Cek identitas server |
+| **Network** | `nmcli con mod <itf> ipv4.method manual` | Set IP Statis |
+| | `ip addr show` | Melihat detail IP interface |
+| **Remote** | `ssh user@ip` | Akses remote server |
+| | `scp local_file user@ip:/path` | Copy file ke remote |
+| **Security** | `firewall-cmd --list-all` | Cek aturan firewall aktif |
 
 ---
 
 ## 📊 Matriks Capaian & Checklist
-Gunakan tabel ini untuk melacak kemajuan belajar Anda:
-
-| Modul | Pekan | Deskripsi | Status | Deliverable |
-| :--- | :--- | :--- | :---: | :--- |
-| **Foundations** | 1 | VirtualBox & VM Setup | [ ] | Laporan PDF VM |
-| | 2 | CentOS Installation | [ ] | Screenshot Login root |
-| **Linux Essentials**| 3 | Perintah Dasar Linux | [ ] | Quiz Basic Commands |
-| | 4 | IP Statis & NMCLI | [ ] | Uji Ping Success |
-| **Infrastructure** | 5 | DNS BIND Setup | [ ] | Output Dig/Nslookup |
-| | 6 | Apache Virtual Host | [ ] | Tampilan Index Web |
-| **Maintenance** | 7 | Troubleshooting Log | [ ] | Log Analysis Report |
-| **Portfolio** | 13 | Proyek Akhir | [ ] | Demo & Dokumentasi |
+| Modul | Deliverable | Deadline | Status |
+| :--- | :--- | :---: | :---: |
+| **Modul 1** | Laporan Setup VM & Install OS | Pekan 2 | [ ] |
+| **Modul 2** | Akses Remote SSH Success | Pekan 4 | [ ] |
+| **Modul 3** | Domain & Web Lab Aktif | Pekan 6 | [ ] |
+| **Modul 4** | Laporan Troubleshooting | Pekan 7 | [ ] |
+| **Portfolio**| Proyek Akhir (Final Report) | Pekan 13 | [ ] |
 
 ---
 *Curated with ❤️ for SMK Telkom Malang Students.*
