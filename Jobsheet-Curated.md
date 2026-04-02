@@ -146,8 +146,26 @@ Tahap awal adalah memastikan layanan Apache dapat berjalan dan melayani konten s
   systemctl start httpd
   systemctl enable httpd
   ```
+- **Mengganti Tampilan Default**:
+  Secara default Apache menampilkan halaman tes. Untuk menggantinya dengan buatan sendiri:
+  ```bash
+  # Pindah ke direktori utama web
+  cd /var/www/html/
+  
+  # Buat file index.html baru
+  nano index.html
+  ```
+  Isi `index.html` dengan kode sederhana:
+  ```html
+  <html>
+  <body>
+      <h1>Selamat Datang di Server Saya!</h1>
+      <p>Halaman ini dibuat sebagai hasil praktikum TKJ Pekan 6.</p>
+  </body>
+  </html>
+  ```
 - **Pengujian Awal**:
-  Gunakan browser di laptop Anda dan akses IP server (`http://192.168.100.1`). Anda seharusnya melihat halaman "Test Page" default milik Apache.
+  Gunakan browser di laptop Anda dan akses IP server (`http://192.168.100.1`). Anda seharusnya melihat tampilan HTML yang baru saja dibuat, bukan lagi halaman tes default.
 
 > [!IMPORTANT]
 > Pastikan port 80 (HTTP) sudah dibuka di firewall agar halaman tes dapat diakses dari luar VM.
