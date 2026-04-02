@@ -61,12 +61,30 @@ Terminal adalah alat utama administrator server. Berikut adalah detail perintah 
 
 ---
 
-### 🟦 Pekan 4: Remote Server Management (SSH & SCP)
-Administrator jarang menyentuh server secara fisik; mereka menggunakan koneksi remote yang aman.
+### 🟦 Pekan 4: Manajemen Jaringan & Remote Server
+Administrator jarang masuk langsung ke server fisik; mereka mengonfigurasi IP statis agar server selalu dapat dihubungi melalui kabel jaringan.
 
-#### 1. Setup SSH (Secure Shell)
+#### 1. Konfigurasi IP Statis (NMCLI)
+CentOS secara default menggunakan **NetworkManager** untuk mengelola koneksi.
+- **Cek Interface**: `nmcli connection show`
+  *(Perhatikan nama koneksi, misalnya `enp0s8` untuk adapter Host-Only).*
+- **Set IP Statis**: `192.168.100.1` dengan subnet `/24`.
+  ```bash
+  nmcli connection modify enp0s8 ipv4.addresses 192.168.100.1/24 ipv4.method manual
+  ```
+  *(Flags: `modify` mengubah profil, `addresses` menentukan IP, `method manual` mengaktifkan mode statis).*
+- **Aktifkan Perubahan**:
+  ```bash
+  nmcli connection up enp0s8
+  ```
+- **Verifikasi Akhir**: `ip a` (Pastikan IP baru sudah muncul pada interface yang benar).
+
+#### 2. Remote Server (SSH & SCP)
+Setelah IP server statis, Anda dapat mengaksesnya dari laptop tanpa harus membuka layar VirtualBox.
+
+#### 2.1. Setup SSH (Secure Shell)
 Secara default CentOS sudah mengaktifkan SSH di port 22.
-- **Cek Status**: `systemctl status sshd`
+- **Cek Status Service**: `systemctl status sshd`
 - **Remote dari Host/Laptop**:
   Buka Windows Terminal atau PowerShell (Pastikan IP VM bisa diping):
   ```bash
@@ -74,13 +92,13 @@ Secara default CentOS sudah mengaktifkan SSH di port 22.
   ```
   *(Masukkan password root saat diminta).*
 
-#### 2. Pengiriman File Aman (SCP)
+#### 2.2. Pengiriman File Aman (SCP)
 Mengirim file dari Laptop (Host) ke Server (Guest) atau sebaliknya:
 - **Kirim dari Host ke Server**:
   ```bash
-  scp tugas.pdf root@192.168.100.1:/home/root/
+  scp tugas_praktikum.pdf root@192.168.100.1:/home/root/
   ```
-- **Ambil dari Server ke Host**:
+- **Ambil log dari Server ke Host**:
   ```bash
   scp root@192.168.100.1:/var/log/messages ./log_copy.txt
   ```
