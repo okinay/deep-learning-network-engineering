@@ -133,22 +133,52 @@ Langkah detail konfigurasi BIND untuk domain `moklet-tkj.com`.
 ---
 
 ### 🟦 Pekan 6: Web Server (Apache)
-Implementasi Virtual Host untuk website sekolah.
+Administrator web harus memahami cara menginstal paket dasar hingga mengelola banyak situs dalam satu server.
 
-1. **Instalasi**: `sudo yum install httpd -y`.
-2. **File Config Host (`/etc/httpd/conf.d/moklet.conf`)**:
-   ```apache
-   <VirtualHost *:80>
-       ServerName moklet-tkj.com
-       DocumentRoot /var/www/html/moklet
-   </VirtualHost>
-   ```
-3. **Aktivasi**:
-   ```bash
-   mkdir -p /var/www/html/moklet
-   echo "Selamat Datang di Web Lab TKJ" > /var/www/html/moklet/index.html
-   systemctl restart httpd
-   ```
+#### 6.1. Instalasi & Pengujian Dasar
+Tahap awal adalah memastikan layanan Apache dapat berjalan dan melayani konten statis.
+- **Instalasi**:
+  ```bash
+  sudo yum install httpd -y
+  ```
+- **Aktivasi Service**:
+  ```bash
+  systemctl start httpd
+  systemctl enable httpd
+  ```
+- **Pengujian Awal**:
+  Gunakan browser di laptop Anda dan akses IP server (`http://192.168.100.1`). Anda seharusnya melihat halaman "Test Page" default milik Apache.
+
+> [!IMPORTANT]
+> Pastikan port 80 (HTTP) sudah dibuka di firewall agar halaman tes dapat diakses dari luar VM.
+
+#### 6.2. Konfigurasi Virtual Host
+Digunakan agar satu server dapat menghosting domain unik seperti `moklet-tkj.com`.
+- **Persiapan Folder**:
+  ```bash
+  mkdir -p /var/www/html/moklet
+  echo "<h1>Web Lab TKJ Sudah Aktif!</h1>" > /var/www/html/moklet/index.html
+  ```
+- **Buat File Konfigurasi (`/etc/httpd/conf.d/moklet.conf`)**:
+  ```apache
+  <VirtualHost *:80>
+      ServerName moklet-tkj.com
+      ServerAlias www.moklet-tkj.com
+      DocumentRoot /var/www/html/moklet
+      
+      <Directory /var/www/html/moklet>
+          Options Indexes FollowSymLinks
+          AllowOverride All
+          Require all granted
+      </Directory>
+  </VirtualHost>
+  ```
+- **Restart & Verifikasi**:
+  Selalu restart setelah mengubah file `.conf`:
+  ```bash
+  systemctl restart httpd
+  ```
+  Akses domain `http://moklet-tkj.com` di browser. Jika DNS BIND sudah benar, pesan "Web Lab TKJ Sudah Aktif!" akan muncul.
 
 ---
 
