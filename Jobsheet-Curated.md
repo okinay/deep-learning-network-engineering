@@ -16,25 +16,55 @@ Jobsheet ini adalah panduan komprehensif bagi siswa untuk menguasai teknologi ja
 ## 📦 Modul 1: Fondasi Virtualisasi & Instalasi OS
 *(Estimasi: Pekan 1 - 2)*
 
-### 🟦 Pekan 1: Pengenalan Lingkungan Virtual
+### 🟦 Pekan 1: Setup Lingkungan Virtual (VirtualBox)
 Siswa belajar mengelola *Virtual Machine* (VM) sebagai simulasi server nyata.
 
-1. **Instalasi VirtualBox**: Pastikan mengunduh versi 7.x atau terbaru.
-2. **Setup VM**:
-   - Nama: `CentOS-VM`
-   - RAM: `2048MB` (Min) - `4096MB` (Recom).
-   - Storage: `20GB` Dynamic Allocated.
-3. **Mounting ISO**: Masukkan file ISO CentOS ke tab **Storage > Controller IDE**.
+#### A. Persiapan Software
+1. Unduh **VirtualBox 7.x** dari [virtualbox.org](https://www.virtualbox.org/).
+2. Unduh **CentOS 7/8 Minimal ISO**.
+
+#### B. Membuat VM Baru (Step-by-Step)
+![VirtualBox New VM](https://www.virtualbox.org/attachment/wiki/Screenshots/win70_new_vm_wizard.png)
+
+1. **Klik Button "New"** di dashboard VirtualBox.
+2. **Name & Operating System**: 
+   - Name: `CentOS-TKJ-Server`
+   - Folder: (Biarkan default atau pilih disk D/E jika C penuh).
+   - ISO Image: Pilih file ISO CentOS yang sudah diunduh.
+   - Type: `Linux`, Version: `Red Hat (64-bit)`.
+3. **Hardware Configuration**:
+   - **Base Memory**: Geser ke `2048 MB` (Hijau).
+   - **Processors**: Minimal `1 CPU` (2 CPU direkomendasikan jika laptop kencang).
+4. **Virtual Harddisk**:
+   - Pilih "Create a Virtual Hard Disk Now".
+   - Size: `20.00 GB`.
+5. **Klik Finish**.
+
+#### C. Pengaturan Jaringan (Penting!)
+Sebelum dijalankan, klik **Settings > Network**:
+- **Adapter 1**: Set ke `NAT` (Agar VM bisa internetan untuk download paket).
+- **Adapter 2** (Klik Enable): Set ke `Host-Only Adapter` (Agar VM punya IP yang bisa di-remote dari laptop host).
 
 ---
 
 ### 🟦 Pekan 2: Instalasi CentOS dengan Pendekatan Server
 Instalasi dilakukan dengan mode **Minimal Install** untuk meminimalkan beban sistem.
 
-1. **Network Configuration**: Interface pertama diatur ke **Bridged Adapter** untuk akses internet.
-2. **Software Selection**: Pilih **"Minimal Install"**.
-3. **Partitioning**: Pilih **"Automatic"** (LVM secara default).
-4. **Post-Installation**: Setelah reboot, login menggunakan user `root`.
+#### Step-by-Step Installation:
+![CentOS Installation Summary](https://www.tecmint.com/wp-content/uploads/2014/07/Installation-Summary.png)
+
+1. **Boot ISO**: Klik **Start** pada VM, lalu pilih "Install CentOS 7".
+2. **Language**: Pilih **English (United States)** untuk standar industri.
+3. **Installation Summary** (Lengkapi bagian bertanda seru `!`):
+   - **Date & Time**: Pilih region `Asia/Jakarta`.
+   - **Software Selection**: Pastikan terpilih **Minimal Install** (Jangan pilih GNOME/GUI).
+   - **Installation Destination**: Klik disk 20GB tadi, biarkan "Automatic Partitioning" terpilih, lalu klik **Done**.
+   - **Network & Host Name**: Nyalakan (ON) semua Ethernet, lalu ganti Hostname menjadi `server.moklet.com`.
+4. **Begin Installation**: Klik tombol di pojok kanan bawah.
+5. **Configuration**:
+   - **Root Password**: Buat yang mudah diingat (Contoh: `moklet123`).
+   - **User Creation**: Buat user siswa (Contoh: `siswa`).
+6. **Reboot**: Tunggu proses selesai dan klik Reboot.
 
 ---
 
@@ -42,69 +72,73 @@ Instalasi dilakukan dengan mode **Minimal Install** untuk meminimalkan beban sis
 *(Estimasi: Pekan 3 - 4)*
 
 ### 🟦 Pekan 3: Penguasaan Terminal (Deep Dive)
-Terminal adalah alat utama administrator server. Berikut adalah detail perintah yang wajib dikuasai:
+Terminal adalah "nyawa" dari seorang administrator server. Tanpa GUI, kita harus hafal perintah dasar.
 
-#### 1. Navigasi & File System
-- `pwd` (Print Working Directory): Mengetahui posisi folder saat ini.
-- `ls -lah`: Menampilkan list file beserta file tersembunyi (`a`), format detail (`l`), dan ukuran yang mudah dibaca/human-readable (`h`).
-- `cd /var/log`: Pindah ke direktori log sistem.
-- `touch file.txt`: Membuat file kosong baru.
-- `mkdir -p folder/subfolder`: Membuat folder beserta parent-nya sekaligus.
+![Linux Terminal](https://www.howtogeek.com/wp-content/uploads/2021/10/linux-terminal-header.png)
 
-#### 2. Manajemen Izin (Permissions)
-- `chmod 755`: Owner bisa segalanya (Read/Write/Execute), Group & Others hanya Read/Execute.
-- `chown root:named /var/named/zonefile`: Mengubah pemilik file menjadi user `root` dan group `named`.
+#### 1. Navigasi & File System (Fundamental)
+- `pwd`: Singkatan dari *Print Working Directory*. Gunakan jika kamu tersesat di folder mana.
+- `ls -lah`: 
+  - `-l`: List detail (ukuran, izin, pembuat).
+  - `-a`: *All* (menampilkan file tersembunyi berawalan titik `.`).
+  - `-h`: *Human Readable* (mengubah bytes menjadi KB/MB/GB).
+- `cd [path]`: Berpindah folder. Tips: gunakan `cd ..` untuk naik satu tingkat ke atas.
+- `mkdir -p project/src`: Parameter `-p` (*parents*) membuat folder bertingkat sekaligus.
 
-#### 3. Update & Package Manager (YUM/DNF)
-- `sudo yum update -y`: Memperbarui semua repository dan paket ke versi terbaru.
-- `sudo yum install <nama_paket>`: Mencari dan mengunduh paket dari internet.
+#### 2. Manajemen Navigasi Teks (The "Pro" Way)
+- `nano [nama_file]`: Editor teks paling ramah pemula.
+- `head -n 5 file.log`: Melihat 5 baris pertama saja.
+- `tail -f /var/log/messages`: **Sangat Penting!** Melihat log secara *real-time* saat terjadi error.
+
+#### 3. Update & Package Manager
+CentOS menggunakan `yum`.
+- `sudo yum search [keyword]`: Mencari aplikasi sebelum install.
+- `sudo yum install [nama] -y`: Parameter `-y` otomatis menjawab "Yes" saat konfirmasi.
+
+> [!TIP]
+> **Tab Completion**: Selalu tekan tombol `TAB` dua kali saat mengetik nama file atau folder agar otomatis terlengkapi. Ini mencegah typo!
 
 ---
 
 ### 🟦 Pekan 4: Manajemen Jaringan & Remote Server
-Administrator jarang masuk langsung ke server fisik; mereka mengonfigurasi IP statis agar server selalu dapat dihubungi melalui kabel jaringan.
+Administrator jarang masuk langsung ke layar hitam server. Mereka duduk santai di depan laptop dan me-remote server melalui jaringan.
 
 #### 1. Konfigurasi IP Statis (NMCLI)
-CentOS secara default menggunakan **NetworkManager** untuk mengelola koneksi.
-- **Cek Interface**: `nmcli connection show`
-  *(Perhatikan nama koneksi, misalnya `enp0s8` untuk adapter Host-Only).*
-- **Set IP Statis**: `192.168.100.1` dengan subnet `/24`.
+VM harus punya alamat tetap (statis) agar bisa dihubungi kapan saja.
+- **Langkah 1**: Cek nama interface: `nmcli device` (Misalnya `enp0s8`).
+- **Langkah 2**: Set IP:
   ```bash
-  nmcli connection modify enp0s8 ipv4.addresses 192.168.100.1/24 ipv4.method manual
+  nmcli con mod enp0s8 ipv4.addresses 192.168.100.1/24 ipv4.method manual
   ```
-  *(Flags: `modify` mengubah profil, `addresses` menentukan IP, `method manual` mengaktifkan mode statis).*
-- **Aktifkan Perubahan**:
-  ```bash
-  nmcli connection up enp0s8
-  ```
-- **Verifikasi Akhir**: `ip a` (Pastikan IP baru sudah muncul pada interface yang benar).
+- **Langkah 3**: Aktifkan: `nmcli con up enp0s8`.
+- **Verifikasi**: Ketik `ip a` dan pastikan muncul angka `192.168.100.1` di interface tersebut.
 
 #### 2. Remote Server (SSH & SCP)
-Setelah IP server statis, Anda dapat mengaksesnya dari laptop tanpa harus membuka layar VirtualBox.
+![SSH Workflow](https://goteleport.com/static/images/ssh/ssh-access-flow.png)
 
-#### 2.1. Setup SSH (Secure Shell)
-Secara default CentOS sudah mengaktifkan SSH di port 22.
-- **Cek Status Service**: `systemctl status sshd`
-- **Remote dari Host/Laptop**:
-  Buka Windows Terminal atau PowerShell (Pastikan IP VM bisa diping):
+SSH (*Secure Shell*) memungkinkan kita mengontrol server secara aman dari laptop.
+
+#### 2.1. Cara Remote dari Laptop (Local Machine)
+- **Windows (PowerShell/CMD)** or **macOS/Linux (Terminal)**:
   ```bash
   ssh root@192.168.100.1
   ```
-  *(Masukkan password root saat diminta).*
+  Jika muncul pesan "The authenticity of host... can't be established", ketik `yes`.
 
-#### 2.2. Pengiriman File Aman (SCP)
-Mengirim file dari Laptop (Host) ke Server (Guest) atau sebaliknya:
-- **Kirim dari Host ke Server**:
+#### 2.2. Cara Kirim File (SCP)
+SCP (*Secure Copy*) bekerja di atas protokol SSH.
+- **Dari Laptop ke Server**:
   ```bash
-  scp tugas_praktikum.pdf root@192.168.100.1:/home/root/
+  scp index.html root@192.168.100.1:/var/www/html/
   ```
-- **Ambil log dari Server ke Host**:
+- **Dari Server ke Laptop**:
   ```bash
-  scp root@192.168.100.1:/var/log/messages ./log_copy.txt
+  # Jalankan di laptop, bukan di VM
+  scp root@192.168.100.1:/var/named/moklet.zone ./backup/
   ```
 
-> [!TIP]
-> Gunakan aplikasi **WinSCP** (Windows) atau **FileZilla** untuk manajemen file server dengan antarmuka grafis (GUI) melalui protokol SFTP/SSH.
+> [!IMPORTANT]
+> Pastikan Laptop dan VM berada dalam satu jaringan (Host-Only Adapter) agar bisa saling `ping`.
 
 ---
 
@@ -112,91 +146,88 @@ Mengirim file dari Laptop (Host) ke Server (Guest) atau sebaliknya:
 *(Estimasi: Pekan 5 - 6)*
 
 ### 🟦 Pekan 5: DNS Server (BIND)
-Langkah detail konfigurasi BIND untuk domain `moklet-tkj.com`.
+DNS adalah "Buku Telepon" internet yang mengubah nama domain menjadi alamat IP.
 
-1. **Instalasi**: `sudo yum install bind bind-utils -y`.
-2. **Edit `/etc/named.conf`**:
-   ```bash
-   listen-on port 53 { 127.0.0.1; any; }; # Izinkan listen di semua IP
-   allow-query { any; };                  # Izinkan query dari mana saja
-   ```
-3. **Membuat Zone File (`/var/named/moklet-tkj.com.zone`)**:
-   ```bash
-   $TTL 86400
-   @ IN SOA ns1.moklet-tkj.com. admin.moklet-tkj.com. ( 2025010101 3600 1800 604800 86400 )
-   @   IN NS  ns1.moklet-tkj.com.
-   ns1 IN A   192.168.100.1
-   www IN A   192.168.100.1
-   ```
-4. **Verifikasi**: `named-checkconf /etc/named.conf` dan `named-checkzone moklet-tkj.com /var/named/moklet-tkj.com.zone`.
+![DNS Resolution](https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-lookup-diagram.png)
+
+#### 1. Instalasi & Basic Config
+Lakukan instalasi paket BIND:
+```bash
+sudo yum install bind bind-utils -y
+```
+
+Edit file utama `/etc/named.conf`:
+```bash
+# Isi konfigurasi penting:
+options {
+    listen-on port 53 { 127.0.0.1; any; }; # Biarkan server melayani request dari luar
+    allow-query { any; };                  # Izinkan semua orang bertanya ke DNS ini
+    recursion yes;                         # Izinkan mencari domain luar (Google, dll)
+};
+
+zone "moklet-tkj.com" IN {
+    type master;
+    file "moklet-tkj.com.zone"; # Nama file zone kita
+    allow-update { none; };
+};
+```
+
+#### 2. Membuat Zone File (`/var/named/moklet-tkj.com.zone`)
+File ini berisi daftar "kontak" domain Anda.
+```bash
+$TTL 86400
+@ IN SOA ns1.moklet-tkj.com. admin.moklet-tkj.com. (
+    2025010101 ; Serial
+    3600       ; Refresh
+    1800       ; Retry
+    604800     ; Expire
+    86400 )    ; Minimum TTL
+
+@   IN NS  ns1.moklet-tkj.com.   ; Nama NameServer kita
+ns1 IN A   192.168.100.1         ; IP Server kita
+www IN A   192.168.100.1         ; IP untuk www
+```
+
+#### 3. Verifikasi DNS
+Jangan restart sebelum dicek!
+- `named-checkconf /etc/named.conf` (Jika tidak muncul apa-apa = Link OK).
+- `dig @192.168.100.1 www.moklet-tkj.com` (Uji apakah domain sudah terdaftar).
 
 ---
 
 ### 🟦 Pekan 6: Web Server (Apache)
-Administrator web harus memahami cara menginstal paket dasar hingga mengelola banyak situs dalam satu server.
+Apache memungkinkan kita menghosting website sehingga bisa diakses via browser.
 
-#### 6.1. Instalasi & Pengujian Dasar
-Tahap awal adalah memastikan layanan Apache dapat berjalan dan melayani konten statis.
-- **Instalasi**:
-  ```bash
-  sudo yum install httpd -y
-  ```
-- **Aktivasi Service**:
-  ```bash
-  systemctl start httpd
-  systemctl enable httpd
-  ```
-- **Mengganti Tampilan Default**:
-  Secara default Apache menampilkan halaman tes. Untuk menggantinya dengan buatan sendiri:
-  ```bash
-  # Pindah ke direktori utama web
-  cd /var/www/html/
-  
-  # Buat file index.html baru
-  nano index.html
-  ```
-  Isi `index.html` dengan kode sederhana:
-  ```html
-  <html>
-  <body>
-      <h1>Selamat Datang di Server Saya!</h1>
-      <p>Halaman ini dibuat sebagai hasil praktikum TKJ Pekan 6.</p>
-  </body>
-  </html>
-  ```
-- **Pengujian Awal**:
-  Gunakan browser di laptop Anda dan akses IP server (`http://192.168.100.1`). Anda seharusnya melihat tampilan HTML yang baru saja dibuat, bukan lagi halaman tes default.
+![Apache Virtual Host](https://www.tecmint.com/wp-content/uploads/2014/11/Apache-Virtual-Hosting.png)
 
-> [!IMPORTANT]
-> Pastikan port 80 (HTTP) sudah dibuka di firewall agar halaman tes dapat diakses dari luar VM.
+#### 6.1. Konfigurasi Virtual Host (Multi-Domain)
+Kita ingin satu server bisa menampung banyak website yang berbeda folder.
 
-#### 6.2. Konfigurasi Virtual Host
-Digunakan agar satu server dapat menghosting domain unik seperti `moklet-tkj.com`.
-- **Persiapan Folder**:
-  ```bash
-  mkdir -p /var/www/html/moklet
-  echo "<h1>Web Lab TKJ Sudah Aktif!</h1>" > /var/www/html/moklet/index.html
-  ```
-- **Buat File Konfigurasi (`/etc/httpd/conf.d/moklet.conf`)**:
-  ```apache
-  <VirtualHost *:80>
-      ServerName moklet-tkj.com
-      ServerAlias www.moklet-tkj.com
-      DocumentRoot /var/www/html/moklet
-      
-      <Directory /var/www/html/moklet>
-          Options Indexes FollowSymLinks
-          AllowOverride All
-          Require all granted
-      </Directory>
-  </VirtualHost>
-  ```
-- **Restart & Verifikasi**:
-  Selalu restart setelah mengubah file `.conf`:
-  ```bash
-  systemctl restart httpd
-  ```
-  Akses domain `http://moklet-tkj.com` di browser. Jika DNS BIND sudah benar, pesan "Web Lab TKJ Sudah Aktif!" akan muncul.
+1. **Buat Folder Website**:
+   ```bash
+   mkdir -p /var/www/html/moklet
+   echo "<h1>Selamat Datang di Web SMK Telkom!</h1>" > /var/www/html/moklet/index.html
+   ```
+
+2. **Buat File VirtualHost** (`/etc/httpd/conf.d/moklet.conf`):
+   ```apache
+   <VirtualHost *:80>
+       ServerName moklet-tkj.com
+       DocumentRoot /var/www/html/moklet
+       
+       # Error Log (Untuk memantau jika web mati)
+       ErrorLog /var/log/httpd/moklet-error.log
+       CustomLog /var/log/httpd/moklet-access.log combined
+   </VirtualHost>
+   ```
+
+3. **Cek Konfigurasi**: `apachectl configtest`. Jika muncul `Syntax OK`, baru restart:
+   ```bash
+   systemctl restart httpd
+   ```
+
+> [!TIP]
+> Agar laptopmu bisa membuka `http://moklet-tkj.com` tanpa DNS sungguhan, tambahkan baris `192.168.100.1 moklet-tkj.com` di file **C:\Windows\System32\drivers\etc\hosts** (Windows) atau **/etc/hosts** (macOS).
 
 ---
 
@@ -204,16 +235,29 @@ Digunakan agar satu server dapat menghosting domain unik seperti `moklet-tkj.com
 *(Estimasi: Pekan 7)*
 
 ### 🛡️ Firewall Management (Firewalld)
-Server tidak akan bisa diakses jika port tidak dibuka di firewall.
-- `firewall-cmd --permanent --add-service=dns`
-- `firewall-cmd --permanent --add-service=http`
-- `firewall-cmd --reload`
+Server tidak akan bisa diakses jika port tidak dibuka di firewall. Bayangkan firewall sebagai "Satpam" yang memeriksa setiap tamu yang masuk.
 
-### 🔧 Troubleshooting Loop
-Jika service gagal jalan (`Failed`), gunakan:
-1. `journalctl -xe`: Melihat error log terbaru.
-2. `systemctl status <service>`: Cek baris error spesifik.
-3. `ping` & `dig`: Cek koneksi fisik dan resolusi nama.
+![Firewall Logic](https://www.checkpoint.com/graphics/how-firewalls-work.png)
+
+- **Buka Port Layanan**: 
+  ```bash
+  firewall-cmd --permanent --add-service=dns  # Buka Port 53
+  firewall-cmd --permanent --add-service=http # Buka Port 80
+  ```
+- **Reload Firewall**: 
+  Setiap ada perubahan, wajib di-reload agar aktif:
+  ```bash
+  firewall-cmd --reload
+  ```
+- **Cek Status**: `firewall-cmd --list-all`.
+
+### 🔧 Troubleshooting Loop (Penyelamatan Server)
+Jika service gagal jalan (`Failed`), jangan panik! Ikuti langkah "Detektif" ini:
+
+1. **Cek Status**: `systemctl status httpd` (Cari teks berwarna merah).
+2. **Lihat Log Detail**: `journalctl -xe` (Geser ke baris paling bawah untuk melihat penyebab error spesifik).
+3. **Cek Koneksi**: `ping 192.168.100.1` (Apakah server masih hidup?).
+4. **Cek Port**: `netstat -tulpen | grep 80` (Apakah port 80 sudah ada yang memakai?).
 
 ---
 
@@ -221,9 +265,13 @@ Jika service gagal jalan (`Failed`), gunakan:
 *(Pekan 8 - 13)*
 
 Fokus pada kemandirian siswa dalam menghadapi skenario industri:
-- **Pekan 8-11**: Implementasi Subdomain dan Hardening (Keamanan).
-- **Pekan 12**: Simulasi Disaster Recovery (Perbaikan konfigurasi yang rusak).
-- **Pekan 13**: **Proyek Akhir Terintegrasi** (Full setup DNS + Web + Remote + Firewall).
+- **Pekan 8-11: Subdomain & Hardening**
+  - Membuat `blog.moklet-tkj.com`.
+  - Mengamankan SSH (Mengganti Port 22 ke Port Custom).
+- **Pekan 12: Disaster Recovery**
+  - Simulasi menghapus file `/etc/named.conf` secara tidak sengaja dan memulihkannya dari backup.
+- **Pekan 13: Proyek Akhir Terintegrasi**
+  - **Goal**: Membangun infrastruktur web lengkap yang bisa diakses dari laptop dengan domain sendiri, memiliki database (opsional), dan firewall yang terkunci rapat.
 
 ---
 
@@ -231,13 +279,15 @@ Fokus pada kemandirian siswa dalam menghadapi skenario industri:
 
 | Kategori | Perintah | Deskripsi |
 | :--- | :--- | :--- |
-| **System** | `systemctl restart <name>` | Me-restart layanan |
-| | `hostnamectl` | Cek identitas server |
-| **Network** | `nmcli con mod <itf> ipv4.method manual` | Set IP Statis |
-| | `ip addr show` | Melihat detail IP interface |
-| **Remote** | `ssh user@ip` | Akses remote server |
-| | `scp local_file user@ip:/path` | Copy file ke remote |
-| **Security** | `firewall-cmd --list-all` | Cek aturan firewall aktif |
+| **System** | `systemctl status <ser>` | Cek kondisi layanan (Active/Failed) |
+| | `journalctl -xe` | Intip error log sistem terbaru |
+| **Network** | `ip a` | Lihat alamat IP interface |
+| | `nmcli con up <itf>` | Nyalakan koneksi network |
+| **DNS** | `named-checkconf` | Cek typo di config BIND |
+| | `dig @localhost <dom>` | Test resolusi domain secara lokal |
+| **Web** | `apachectl configtest` | Cek typo di config Apache |
+| | `tail -f /var/log/httpd/access_log` | Pantau pengunjung web secara live |
+| **Security** | `firewall-cmd --list-all` | Lihat pintu port yang terbuka |
 
 ---
 
