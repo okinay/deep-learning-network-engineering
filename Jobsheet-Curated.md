@@ -197,9 +197,16 @@ ns1 IN A   192.168.100.1         ; IP Server kita
 www IN A   192.168.100.1         ; IP untuk www
 ```
 
-#### 3. Verifikasi DNS
-Jangan restart sebelum dicek!
-- `named-checkconf /etc/named.conf` (Jika tidak muncul apa-apa = Link OK).
+#### 3. Aktivasi & Verifikasi DNS
+Sebelum melakukan pengujian, aktifkan layanan DNS terlebih dahulu:
+```bash
+systemctl start named
+systemctl enable named
+```
+
+**Tips**: Selalu cek typo di file konfigurasi sebelum (re)start:
+- `named-checkconf /etc/named.conf` (Jika tidak muncul apa-apa = OK).
+- `systemctl restart named`
 - `dig @192.168.100.1 www.moklet-tkj.com` (Uji apakah domain sudah terdaftar).
 
 ---
