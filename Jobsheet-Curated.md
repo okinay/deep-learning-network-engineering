@@ -95,6 +95,15 @@ CentOS menggunakan `yum`.
 - `sudo yum search [keyword]`: Mencari aplikasi sebelum install.
 - `sudo yum install [nama] -y`: Parameter `-y` otomatis menjawab "Yes" saat konfirmasi.
 
+#### 4. System Health Check (Monitoring)
+Administrator harus tahu kapan servernya "kelelahan" (kehabisan RAM atau CPU).
+
+![System Monitoring](assets/images/system_monitoring_pro.png)
+
+- `top`: Melihat proses yang paling banyak memakan CPU secara live. (Tekan `q` untuk keluar).
+- `df -h`: Melihat sisa kapasitas harddisk dalam format yang mudah dibaca (GB/MB).
+- `free -m`: Melihat sisa RAM dalam satuan Megabytes.
+
 > [!TIP]
 > **Tab Completion**: Selalu tekan tombol `TAB` dua kali saat mengetik nama file atau folder agar otomatis terlengkapi. Ini mencegah typo!
 
@@ -229,6 +238,34 @@ Kita ingin satu server bisa menampung banyak website yang berbeda folder.
 > [!TIP]
 > Agar laptopmu bisa membuka `http://moklet-tkj.com` tanpa DNS sungguhan, tambahkan baris `192.168.100.1 moklet-tkj.com` di file **C:\Windows\System32\drivers\etc\hosts** (Windows) atau **/etc/hosts** (macOS).
 
+
+---
+
+### 🟦 Pekan 7: Database & Dynamic Web (LAMP)
+Web modern tidak hanya berisi teks statis, tapi juga data dinamis (seperti login atau konten berita).
+
+![LAMP Stack](assets/images/lamp_stack_pro.png)
+
+#### 7.1. Database Server (MariaDB)
+MariaDB adalah tempat menyimpan data user dan konten web.
+- **Instalasi**: `sudo yum install mariadb-server -y`.
+- **Aktivasi**: `systemctl start mariadb` dan `systemctl enable mariadb`.
+- **Set Password**:
+  ```bash
+  mysql_secure_installation
+  ```
+  *(Ikuti petunjuk untuk membuat password root database).*
+
+#### 7.2. Dynamic Web (PHP)
+Agar website bisa memproses logika (seperti `Halaman Login`), kita butuh PHP.
+- **Instalasi**: `sudo yum install php php-mysqlnd -y`.
+- **Uji Coba PHP**:
+  ```bash
+  echo "<?php phpinfo(); ?>" > /var/www/html/moklet/info.php
+  systemctl restart httpd
+  ```
+- **Verifikasi**: Buka `http://moklet-tkj.com/info.php` di browser. Jika muncul tabel ungu berisi informasi PHP, maka server PHP sudah aktif!
+
 ---
 
 ## 🔍 Modul 4: Security & Troubleshooting
@@ -259,6 +296,12 @@ Jika service gagal jalan (`Failed`), jangan panik! Ikuti langkah "Detektif" ini:
 3. **Cek Koneksi**: `ping 192.168.100.1` (Apakah server masih hidup?).
 4. **Cek Port**: `netstat -tulpen | grep 80` (Apakah port 80 sudah ada yang memakai?).
 
+### 🛡️ SELinux (The "Silent Killer")
+CentOS memiliki fitur keamanan super ketat bernama **SELinux**. Seringkali konfigurasi kita "BENAR" tapi tetap ditolak oleh sistem.
+- **Cek Status**: `getenforce`.
+- **Pesan Error Umum**: Jika muncul error `403 Forbidden` padahal izin file sudah benar, biasanya PELAKUNYA adalah SELinux.
+- **Solusi Sementara (Lab Only)**: `setenforce 0` (Mengubah status menjadi *Permissive*).
+
 ---
 
 ## 🚀 Praktikum Lanjut: Studi Kasus & Proyek
@@ -271,7 +314,7 @@ Fokus pada kemandirian siswa dalam menghadapi skenario industri:
 - **Pekan 12: Disaster Recovery**
   - Simulasi menghapus file `/etc/named.conf` secara tidak sengaja dan memulihkannya dari backup.
 - **Pekan 13: Proyek Akhir Terintegrasi**
-  - **Goal**: Membangun infrastruktur web lengkap yang bisa diakses dari laptop dengan domain sendiri, memiliki database (opsional), dan firewall yang terkunci rapat.
+  - **Goal**: Membangun infrastruktur web lengkap yang bisa diakses dari laptop dengan domain sendiri, memiliki database MariaDB, memproses script PHP, dan firewall yang terkunci rapat.
 
 ---
 
@@ -279,15 +322,15 @@ Fokus pada kemandirian siswa dalam menghadapi skenario industri:
 
 | Kategori | Perintah | Deskripsi |
 | :--- | :--- | :--- |
-| **System** | `systemctl status <ser>` | Cek kondisi layanan (Active/Failed) |
+| **System** | `top` / `df -h` / `free -m` | Cek kesehatan CPU/Disk/RAM |
 | | `journalctl -xe` | Intip error log sistem terbaru |
 | **Network** | `ip a` | Lihat alamat IP interface |
 | | `nmcli con up <itf>` | Nyalakan koneksi network |
 | **DNS** | `named-checkconf` | Cek typo di config BIND |
 | | `dig @localhost <dom>` | Test resolusi domain secara lokal |
-| **Web** | `apachectl configtest` | Cek typo di config Apache |
+| **DB / Web** | `mysql -u root -p` | Masuk ke terminal Database |
 | | `tail -f /var/log/httpd/access_log` | Pantau pengunjung web secara live |
-| **Security** | `firewall-cmd --list-all` | Lihat pintu port yang terbuka |
+| **Security** | `setenforce 0` | Matikan paksa blokir SELinux |
 
 ---
 
@@ -297,7 +340,8 @@ Fokus pada kemandirian siswa dalam menghadapi skenario industri:
 | **Modul 1** | Laporan Setup VM & Install OS | Pekan 2 | [ ] |
 | **Modul 2** | Akses Remote SSH Success | Pekan 4 | [ ] |
 | **Modul 3** | Domain & Web Lab Aktif | Pekan 6 | [ ] |
-| **Modul 4** | Laporan Troubleshooting | Pekan 7 | [ ] |
+| **Modul 4** | Database & PHP (LAMP) Ready | Pekan 7 | [ ] |
+| **Modul 5** | Laporan Troubleshooting | Pekan 8 | [ ] |
 | **Portfolio**| Proyek Akhir (Final Report) | Pekan 13 | [ ] |
 
 ---
