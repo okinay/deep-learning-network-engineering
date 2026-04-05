@@ -207,31 +207,58 @@ Jangan restart sebelum dicek!
 ### 🟦 Pekan 6: Web Server (Apache)
 Apache memungkinkan kita menghosting website sehingga bisa diakses via browser.
 
+#### 6.1. Instalasi & Aktifasi Layanan
+Langkah pertama adalah memasang paket web server Apache:
+```bash
+sudo yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+```
+
+#### 6.2. Default Document Root (Akses via IP)
+Secara default, Apache akan mencari file di folder `/var/www/html/`.
+
+![Akses via IP](assets/images/web_ip_access.png)
+
+1. **Membuat Halaman Utama**:
+   Gunakan editor `nano` untuk membuat file `index.html` baru:
+   ```bash
+   nano /var/www/html/index.html
+   ```
+   Isi dengan kode HTML sederhana:
+   ```html
+   <h1>Selamat Datang di Server Pusat!</h1>
+   <p>Halaman ini diakses langsung menggunakan IP Address Server.</p>
+   ```
+2. **Pengujian**:
+   Buka browser di laptop Anda dan ketikkan IP address server (Contoh: `http://192.168.100.1`). Anda seharusnya melihat tampilan HTML yang baru saja dibuat.
+
+#### 6.3. Konfigurasi Virtual Host (Multi-Domain)
+Setelah memahami dasar akses IP, sekarang kita akan belajar cara menghosting banyak domain dalam satu server menggunakan **Virtual Host**.
+
 ![Apache Virtual Host](assets/images/apache_vhost.png)
 
-#### 6.1. Konfigurasi Virtual Host (Multi-Domain)
-Kita ingin satu server bisa menampung banyak website yang berbeda folder.
-
-1. **Buat Folder Website**:
+1. **Buat Folder Khusus Website**:
    ```bash
    mkdir -p /var/www/html/moklet
-   echo "<h1>Selamat Datang di Web SMK Telkom!</h1>" > /var/www/html/moklet/index.html
+   echo "<h1>Web Lab TKJ (Virtual Host) Aktif!</h1>" > /var/www/html/moklet/index.html
    ```
 
-2. **Buat File VirtualHost** (`/etc/httpd/conf.d/moklet.conf`):
+2. **Buat File Konfigurasi** (`/etc/httpd/conf.d/moklet.conf`):
    ```apache
    <VirtualHost *:80>
        ServerName moklet-tkj.com
        DocumentRoot /var/www/html/moklet
        
-       # Error Log (Untuk memantau jika web mati)
+       # Log Aktivitas
        ErrorLog /var/log/httpd/moklet-error.log
        CustomLog /var/log/httpd/moklet-access.log combined
    </VirtualHost>
    ```
 
-3. **Cek Konfigurasi**: `apachectl configtest`. Jika muncul `Syntax OK`, baru restart:
+3. **Verifikasi & Restart**:
    ```bash
+   apachectl configtest   # Pastikan muncul "Syntax OK"
    systemctl restart httpd
    ```
 
