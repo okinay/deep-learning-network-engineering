@@ -24,7 +24,7 @@ Siswa belajar mengelola *Virtual Machine* (VM) sebagai simulasi server nyata.
 2. Unduh **CentOS 7/8 Minimal ISO**.
 
 #### B. Membuat VM Baru (Step-by-Step)
-![VirtualBox New VM](https://www.virtualbox.org/manual/images/create-vm-1.png)
+![VirtualBox New VM](assets/images/virtualbox_create_vm.png)
 
 1. **Klik Button "New"** di dashboard VirtualBox.
 2. **Name & Operating System**: 
@@ -51,7 +51,7 @@ Sebelum dijalankan, klik **Settings > Network**:
 Instalasi dilakukan dengan mode **Minimal Install** untuk meminimalkan beban sistem.
 
 #### Step-by-Step Installation:
-![CentOS Installation Summary](https://blog.centlinux.com/wp-content/uploads/2018/12/07-centos-7-installation-summary.png)
+![CentOS Installation Summary](assets/images/centos_install_summary.png)
 
 1. **Boot ISO**: Klik **Start** pada VM, lalu pilih "Install CentOS 7".
 2. **Language**: Pilih **English (United States)** untuk standar industri.
@@ -74,7 +74,7 @@ Instalasi dilakukan dengan mode **Minimal Install** untuk meminimalkan beban sis
 ### 🟦 Pekan 3: Penguasaan Terminal (Deep Dive)
 Terminal adalah "nyawa" dari seorang administrator server. Tanpa GUI, kita harus hafal perintah dasar.
 
-![Linux Terminal](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/GNOME_Terminal_3.36.1.png/640px-GNOME_Terminal_3.36.1.png)
+![Linux Terminal](assets/images/linux_terminal_pro.png)
 
 #### 1. Navigasi & File System (Fundamental)
 - `pwd`: Singkatan dari *Print Working Directory*. Gunakan jika kamu tersesat di folder mana.
@@ -114,7 +114,7 @@ VM harus punya alamat tetap (statis) agar bisa dihubungi kapan saja.
 - **Verifikasi**: Ketik `ip a` dan pastikan muncul angka `192.168.100.1` di interface tersebut.
 
 #### 2. Remote Server (SSH & SCP)
-![SSH Workflow](https://media.geeksforgeeks.org/wp-content/uploads/20230221121111/SSH-working.png)
+![SSH Workflow](assets/images/ssh_workflow_diagram.png)
 
 SSH (*Secure Shell*) memungkinkan kita mengontrol server secara aman dari laptop.
 
@@ -148,7 +148,7 @@ SCP (*Secure Copy*) bekerja di atas protokol SSH.
 ### 🟦 Pekan 5: DNS Server (BIND)
 DNS adalah "Buku Telepon" internet yang mengubah nama domain menjadi alamat IP.
 
-![DNS Resolution](https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-lookup-diagram.png)
+![DNS Resolution](assets/images/dns_resolution.png)
 
 #### 1. Instalasi & Basic Config
 Lakukan instalasi paket BIND:
@@ -198,7 +198,7 @@ Jangan restart sebelum dicek!
 ### 🟦 Pekan 6: Web Server (Apache)
 Apache memungkinkan kita menghosting website sehingga bisa diakses via browser.
 
-![Apache Virtual Host](https://miro.medium.com/v2/resize:fit:1200/1*HDF6l4Vo7vZARRxE5QKrBg.png)
+![Apache Virtual Host](assets/images/apache_vhost.png)
 
 #### 6.1. Konfigurasi Virtual Host (Multi-Domain)
 Kita ingin satu server bisa menampung banyak website yang berbeda folder.
@@ -237,7 +237,7 @@ Kita ingin satu server bisa menampung banyak website yang berbeda folder.
 ### 🛡️ Firewall Management (Firewalld)
 Server tidak akan bisa diakses jika port tidak dibuka di firewall. Bayangkan firewall sebagai "Satpam" yang memeriksa setiap tamu yang masuk.
 
-![Firewall Logic](https://cf-assets.www.cloudflare.com/slt3lc6tev37/5wfmLijgWmcfy3AqBkmYKc/7d52f8a30aec966d734bf17a0f14573a/what-is-a-firewall.svg)
+![Firewall Logic](assets/images/firewall_logic.png)
 
 - **Buka Port Layanan**: 
   ```bash
